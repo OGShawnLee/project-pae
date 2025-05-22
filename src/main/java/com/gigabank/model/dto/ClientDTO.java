@@ -1,6 +1,7 @@
 package com.gigabank.model.dto;
 
-import com.gigabank.model.Validator;
+import com.gigabank.model.validation.InvalidFieldException;
+import com.gigabank.model.validation.Validator;
 
 public class ClientDTO extends Person {
   private final String lastName;
@@ -68,32 +69,32 @@ public class ClientDTO extends Person {
     private String curp;
     private String rfc;
 
-    public ClientBuilder setLastName(String lastName) throws IllegalArgumentException {
+    public ClientBuilder setLastName(String lastName) throws InvalidFieldException {
       this.lastName = Validator.getValidName(lastName, 3, 64, "Lastname");
       return this;
     }
 
-    public ClientBuilder setNationality(String nationality) throws IllegalArgumentException {
+    public ClientBuilder setNationality(String nationality) throws InvalidFieldException {
       this.nationality = Validator.getValidName(nationality, 3, 64, "Nationality");
       return this;
     }
 
-    public ClientBuilder setEmail(String email) throws IllegalArgumentException {
+    public ClientBuilder setEmail(String email) throws InvalidFieldException {
       this.email = Validator.getValidEmail(email);
       return this;
     }
 
-    public ClientBuilder setPhone(String phone) throws IllegalArgumentException {
+    public ClientBuilder setPhone(String phone) throws InvalidFieldException {
       this.phone = Validator.getValidPhone(phone);
       return this;
     }
 
-    public ClientBuilder setCURP(String curp) throws IllegalArgumentException {
+    public ClientBuilder setCURP(String curp) throws InvalidFieldException {
       this.curp = Validator.getValidCURP(curp);
       return this;
     }
 
-    public ClientBuilder setRFC(String rfc) throws IllegalArgumentException {
+    public ClientBuilder setRFC(String rfc) throws InvalidFieldException {
       this.rfc = Validator.getValidRFC(rfc);
       return this;
     }

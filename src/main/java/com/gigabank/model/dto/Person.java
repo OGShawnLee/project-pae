@@ -1,6 +1,7 @@
 package com.gigabank.model.dto;
 
-import com.gigabank.model.Validator;
+import com.gigabank.model.validation.InvalidFieldException;
+import com.gigabank.model.validation.Validator;
 
 import java.time.LocalDateTime;
 
@@ -46,17 +47,17 @@ public abstract class Person {
       return (T) this;
     }
 
-    public T setName(String name) throws IllegalArgumentException {
+    public T setName(String name) throws InvalidFieldException {
       this.name = Validator.getValidName(name, 3, 64, "Name");
       return self();
     }
 
-    public T setAddress(String address) throws IllegalArgumentException {
+    public T setAddress(String address) throws InvalidFieldException {
       this.address = Validator.getValidName(address, 3, 128, "Address");
       return self();
     }
 
-    public T setBornAt(LocalDateTime bornAt) {
+    public T setBornAt(LocalDateTime bornAt) throws InvalidFieldException {
       this.bornAt = Validator.getValidDateOfBirth(bornAt);
       return self();
     }
