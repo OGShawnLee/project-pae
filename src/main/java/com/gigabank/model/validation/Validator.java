@@ -14,7 +14,7 @@ public class Validator {
   }
 
   private static boolean isValidString(String str, int minLength, int maxLength, String regex) {
-    return isValidString(str, minLength, maxLength) && str.matches(regex);
+    return isValidString(str, minLength, maxLength) && str.trim().matches(regex);
   }
 
   public static String getValidString(String str, int minLength, int maxLength, String fieldName) throws InvalidFieldException {
