@@ -89,4 +89,25 @@ public class Validator {
 
     throw new InvalidFieldException("RFC must be between 12 and 13 characters long and follow the RFC format.");
   }
+
+  public static float getValidWage(String wage) throws InvalidFieldException {
+    if (isValidString(wage, 1, 10)) {
+      try {
+        float wageFloat = Float.parseFloat(wage);
+
+        if (wageFloat < 0) {
+          throw new InvalidFieldException("Wage must be a positive value.");
+        }
+
+        if (wageFloat < 1600 || wageFloat > 6000) {
+          throw new InvalidFieldException("Wage must be between 1,600 and 6,000 dollars.");
+        }
+
+      } catch (NumberFormatException e) {
+        throw new InvalidFieldException("Wage must be a valid floating number.");
+      }
+    }
+
+    throw new InvalidFieldException("Wage must be between 1 and 10 characters long.");
+  }
 }
