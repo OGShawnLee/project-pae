@@ -3,6 +3,8 @@ import com.gigabank.model.validation.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class ValidatorTest {
@@ -516,5 +518,45 @@ public class ValidatorTest {
         "Wage cannot contain special characters"
       );
     }
+  }
+
+  @Test
+  public void testGetValidDateOfBirth() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          LocalDateTime.of(2000, 1, 1, 0, 0),
+          Validator.getValidDateOfBirth(LocalDateTime.of(2000, 1, 1, 0, 0)),
+          "Valid date of birth should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidDateOfBirthWithFutureDate() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidDateOfBirth(LocalDateTime.of(2300, 1, 1, 0, 0)),
+      "Date of birth cannot be in the future"
+    );
+  }
+
+  @Test
+  public void testGetValidDateOfBirthWithUnderage() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidDateOfBirth(LocalDateTime.of(2023, 1, 1, 0, 0)),
+      "Date of birth must be at least 18 years ago"
+    );
+  }
+
+  @Test
+  public void testGetValidDateOfBirthWithNull() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidDateOfBirth(null),
+      "Date of birth cannot be null"
+    );
   }
 }
