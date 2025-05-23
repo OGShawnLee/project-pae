@@ -434,4 +434,87 @@ public class ValidatorTest {
       }
     );
   }
+
+  @Test
+  public void testGetValidWage() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          1900.75,
+          Validator.getValidWage("1900.75"),
+          "Valid wage should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithSpaces() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          1975.75,
+          Validator.getValidWage("   1975.75   "),
+          "Valid wage should be returned with spaces trimmed"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithNull() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidWage(null),
+      "Wage cannot be null"
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithEmpty() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidWage(""),
+      "Wage cannot be empty"
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithInvalidFormat() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidWage("invalid-wage"),
+      "Wage must be in a valid format"
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithLowerBound() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidWage("1599"),
+      "Wage must be 1600 dollars or greater"
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithUpperBound() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidWage("6001"),
+      "Wage must be less than 6000 dollars"
+    );
+  }
+
+  @Test
+  public void testGetValidWageWithInvalidCharacters() {
+    String[] invalidCharacters = {"!", "#", "$", "%", "^", "&", "*", "(", ")", "=", "+", "{", "}", "[", "]", "|", "\\", ":", ";", "\"", "'", "<", ">", ",", "?", "/", "~"};
+    for (String invalidCharacter : invalidCharacters) {
+      Assertions.assertThrows(
+        InvalidFieldException.class,
+        () -> Validator.getValidWage("1900.75" + invalidCharacter),
+        "Wage cannot contain special characters"
+      );
+    }
+  }
 }

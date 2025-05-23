@@ -91,23 +91,22 @@ public class Validator {
   }
 
   public static float getValidWage(String wage) throws InvalidFieldException {
-    if (isValidString(wage, 1, 10)) {
-      try {
-        float wageFloat = Float.parseFloat(wage);
+    String trimmedWage = getValidString(wage, 1, 10, "Wage");
 
-        if (wageFloat < 0) {
-          throw new InvalidFieldException("Wage must be a positive value.");
-        }
+    try {
+      float wageFloat = Float.parseFloat(trimmedWage);
 
-        if (wageFloat < 1600 || wageFloat > 6000) {
-          throw new InvalidFieldException("Wage must be between 1,600 and 6,000 dollars.");
-        }
-
-      } catch (NumberFormatException e) {
-        throw new InvalidFieldException("Wage must be a valid floating number.");
+      if (wageFloat < 1600) {
+        throw new InvalidFieldException("Wage must be 1600 or greater.");
       }
-    }
 
-    throw new InvalidFieldException("Wage must be between 1 and 10 characters long.");
+      if (wageFloat > 6000) {
+        throw new InvalidFieldException("Wage must be 6000 or less.");
+      }
+
+      return wageFloat;
+    } catch (NumberFormatException e) {
+      throw new InvalidFieldException("Wage must be a valid floating number.");
+    }
   }
 }
