@@ -260,4 +260,78 @@ public class ValidatorTest {
       );
     }
   }
+
+  @Test
+  public void testGetValidPhone() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "12345678",
+          Validator.getValidPhone("12345678"),
+          "Valid phone should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithSpaces() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "12345678",
+          Validator.getValidPhone("   12345678   "),
+          "Valid phone should be returned with spaces trimmed"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithNull() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidPhone(null),
+      "Phone cannot be null"
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithEmpty() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidPhone(""),
+      "Phone cannot be empty"
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithInvalidFormat() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidPhone("1234567"),
+      "Phone must be in a valid format"
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithInvalidLength() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidPhone("123456789"),
+      "Phone must be 8 characters long"
+    );
+  }
+
+  @Test
+  public void testGetValidPhoneWithInvalidCharacters() {
+    String[] invalidCharacters = {"!", "#", "$", "%", "^", "&", "*", "(", ")", "=", "+", "{", "}", "[", "]", "|", "\\", ":", ";", "\"", "'", "<", ">", ",", "?", "/", "~"};
+    for (String invalidCharacter : invalidCharacters) {
+      Assertions.assertThrows(
+        InvalidFieldException.class,
+        () -> Validator.getValidPhone("12345678" + invalidCharacter),
+        "Phone cannot contain special characters"
+      );
+    }
+  }
 }
