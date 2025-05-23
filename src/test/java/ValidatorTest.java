@@ -334,4 +334,104 @@ public class ValidatorTest {
       );
     }
   }
+
+  @Test
+  public void testGetValidName() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "John Doe",
+          Validator.getValidName("John Doe", 3, 64, "Name"),
+          "Valid name should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithSpaces() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "John Doe",
+          Validator.getValidName("   John Doe   ", 3, 64, "Name"),
+          "Valid name should be returned with spaces trimmed"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithNull() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidName(null, 3, 64, "Name"),
+      "Name cannot be null"
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithEmpty() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidName("", 3, 64, "Name"),
+      "Name cannot be empty"
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithInvalidLength() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidName("Jo", 3, 64, "Name"),
+      "Name must be between 3 and 64 characters long"
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithInvalidFormat() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidName("John123", 3, 64, "Name"),
+      "Name must be in a valid format"
+    );
+  }
+
+  @Test
+  public void testGetValidNameWithInvalidCharacters() {
+    String[] invalidCharacters = {"!", "#", "$", "%", "^", "&", "*", "(", ")", "=", "+", "{", "}", "[", "]", "|", "\\", ":", ";", "\"", "'", "<", ">", ",", "?", "/", "~"};
+    for (String invalidCharacter : invalidCharacters) {
+      Assertions.assertThrows(
+        InvalidFieldException.class,
+        () -> Validator.getValidName("John Doe" + invalidCharacter, 3, 64, "Name"),
+        "Name cannot contain special characters"
+      );
+    }
+  }
+
+  @Test
+  public void testGetValidNameSpanish() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "José María Nuñez",
+          Validator.getValidName("José María Nuñez", 3, 64, "Name"),
+          "Valid name should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidNameSpanishWithSpaces() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "José María Nuñez",
+          Validator.getValidName("   José María Nuñez   ", 3, 64, "Name"),
+          "Valid name should be returned with spaces trimmed"
+        );
+      }
+    );
+  }
 }
