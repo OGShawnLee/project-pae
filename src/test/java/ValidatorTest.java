@@ -52,19 +52,19 @@ public class ValidatorTest {
 
   @Test
   public void testGetValidCURPWithInvalidFormat() {
-    String[] invalidFormats = {
+    final String[] INVALID_FORMATS = {
       // NOT 4 LETTERS AT THE BEGINNING
       "GOD123456HDFLNS099",
       // NOT 6 NUMBERS AFTER THE FIRST 4 LETTERS
       "GODE123F56HDFLNS09",
       // NOT H OR M AFTER THE FIRST 10 CHARACTERS
-      "GODE123456lDFLNS09",
+      "GODE123456LDFLNS09",
       // NOT 5 LETTERS AFTER THE FIRST 12 CHARACTERS
       "GODE123456HD2LNS02",
       // NOT 2 NUMBERS AT THE END
       "GODE123456HDFLNS0A",
     };
-    for (String invalidFormat : invalidFormats) {
+    for (String invalidFormat : INVALID_FORMATS) {
       Assertions.assertThrows(
         InvalidFieldException.class,
         () -> Validator.getValidCURP(invalidFormat),
@@ -173,6 +173,90 @@ public class ValidatorTest {
         InvalidFieldException.class,
         () -> Validator.getValidEmail("JohnDoe" + invalidCharacter + "@gmail.com"),
         "Email cannot contain special characters"
+      );
+    }
+  }
+
+  @Test
+  public void testGetValidRFC() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "GODE123456HDF",
+          Validator.getValidRFC("GODE123456HDF"),
+          "Valid RFC should be returned"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidRFCWithSpaces() {
+    assertDoesNotThrow(
+      () -> {
+        Assertions.assertEquals(
+          "GODE123456HDF",
+          Validator.getValidRFC("   GODE123456HDF   "),
+          "Valid RFC should be returned with spaces trimmed"
+        );
+      }
+    );
+  }
+
+  @Test
+  public void testGetValidRFCWithNull() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidRFC(null),
+      "RFC cannot be null"
+    );
+  }
+
+  @Test
+  public void testGetValidRFCWithEmpty() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidRFC(""),
+      "RFC cannot be empty"
+    );
+  }
+
+  @Test
+  public void testGetValidRFCWithInvalidFormat() {
+    final String[] INVALID_FORMATS = {
+      // NOT 3 LETTERS AT THE BEGINNING
+      "GO12123456HDF",
+      // NOT 6 NUMBERS AFTER THE FIRST 4 LETTERS
+      "GODE123F56HDF",
+      // NOT 3 LETTERS OR NUMBERS AFTER THE FIRST 12 CHARACTERS
+      "GODE123456HD&",
+    };
+    for (String invalidFormat : INVALID_FORMATS) {
+      Assertions.assertThrows(
+        InvalidFieldException.class,
+        () -> Validator.getValidRFC(invalidFormat),
+        "RFC must be in a valid format"
+      );
+    }
+  }
+
+  @Test
+  public void testGetValidRFCWithInvalidLength() {
+    Assertions.assertThrows(
+      InvalidFieldException.class,
+      () -> Validator.getValidRFC("GODE123456HDFL"),
+      "RFC must be 13 characters long"
+    );
+  }
+
+  @Test
+  public void testGetValidRFCWithInvalidCharacters() {
+    String[] invalidCharacters = {"!", "#", "$", "%", "^", "&", "*", "(", ")", "=", "+", "{", "}", "[", "]", "|", "\\", ":", ";", "\"", "'", "<", ">", ",", "?", "/", "~"};
+    for (String invalidCharacter : invalidCharacters) {
+      Assertions.assertThrows(
+        InvalidFieldException.class,
+        () -> Validator.getValidRFC("GODE123456HDF" + invalidCharacter),
+        "RFC cannot contain special characters"
       );
     }
   }
