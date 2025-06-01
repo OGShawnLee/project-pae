@@ -16,12 +16,20 @@ public class Serializer {
     }
   }
 
-  public static <T> T readFileToObject(String path) throws IOException, ClassNotFoundException {
+  private static <T> T readFileToObject(String path) throws IOException, ClassNotFoundException {
     try (
       FileInputStream fis = new FileInputStream(path);
       ObjectInputStream ois = new ObjectInputStream(fis);
     ) {
       return (T) ois.readObject();
+    }
+  }
+
+  public static <T> T readFileToObjectOrDefault(String path, T defaultObject) {
+    try {
+      return readFileToObject(path);
+    } catch (IOException | ClassNotFoundException e) {
+      return defaultObject;
     }
   }
 }

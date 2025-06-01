@@ -8,14 +8,7 @@ public abstract class DBService<T> {
   protected String SERVICE_DB_PATH;
 
   protected DBService(String serviceName, T DB_STORE) {
-    T dbStore;
-    try {
-      dbStore = Serializer.readFileToObject(DB_PATH + "/" + serviceName + "-db.ser");
-    } catch (IOException | ClassNotFoundException e) {
-      dbStore = DB_STORE;
-    }
-
-    this.DB_STORE = dbStore;
+    this.DB_STORE = Serializer.readFileToObjectOrDefault(DB_PATH + "/" + serviceName + "-db.ser", DB_STORE);
     this.SERVICE_DB_PATH = DB_PATH + "/" + serviceName + "-db.ser";
   }
 
