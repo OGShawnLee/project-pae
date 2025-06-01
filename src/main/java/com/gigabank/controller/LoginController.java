@@ -49,7 +49,25 @@ public class LoginController extends Controller {
 
     if (dataObject.hasPasswordMatch(password)) {
       AuthClient.getInstance().setCurrentUser(dataObject);
-      navigateFromThisPageTo("Landing Page", "LandingAdministratorPage");
+
+      switch (dataObject.getRole()) {
+        case ADMIN:
+          navigateFromThisPageTo("Landing Page", "LandingAdministratorPage");
+          break;
+        case MANAGER:
+          // TODO: Implement Manager Landing Page
+          navigateFromThisPageTo("Landing Page", "LandingManagerPage");
+          break;
+        case EXECUTIVE:
+          // TODO: Implement Executive Landing Page
+          navigateFromThisPageTo("Landing Page", "LandingExecutivePage");
+          break;
+        case TELLER:
+          // TODO: Implement Teller Landing Page
+          navigateFromThisPageTo("Landing Page", "LandingTellerPage");
+          break;
+      }
+
     } else {
       Modal.displayError("Invalid credentials. Please try again.");
     }
