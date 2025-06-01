@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class AccountDTO implements Serializable {
   public enum Role {
-    ADMIN, EMPLOYEE, EXECUTIVE, TELLER
+    ADMIN, MANAGER, EXECUTIVE, TELLER
   }
 
   private String displayName;
