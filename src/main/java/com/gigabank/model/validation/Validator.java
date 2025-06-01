@@ -8,6 +8,7 @@ public class Validator {
   private static final String NAME_REGEX_SPANISH = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\\s]+$";
   private static final String PHONE_REGEX = "^[0-9]{8}$";
   private static final String RFC_REGEX = "^[A-Z]{3,4}[0-9]{6}[A-Z0-9]{3}$";
+  private static final String DISPLAY_NAME_REGEX = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$";
 
   private static boolean isValidString(String str, int minLength, int maxLength) {
     return str != null && str.trim().length() >= minLength && str.trim().length() <= maxLength;
@@ -54,6 +55,14 @@ public class Validator {
     return dateOfBirth;
   }
 
+  public static String getValidDisplayName(String displayName) throws InvalidFieldException {
+    if (isValidString(displayName, 3, 64, DISPLAY_NAME_REGEX)) {
+      return displayName.trim();
+    }
+
+    throw new InvalidFieldException("Display name must be between 3 and 64 characters long and follow the display name format.");
+  }
+
   public static String getValidCURP(String curp) throws InvalidFieldException {
     if (isValidString(curp, 18, 18, CURP_REGEX)) {
       return curp.trim();
@@ -88,6 +97,10 @@ public class Validator {
     }
 
     throw new InvalidFieldException("RFC must be between 12 and 13 characters long and follow the RFC format.");
+  }
+
+  public static String getValidPassword(String password) throws InvalidFieldException {
+    return getValidString(password, 8, 64, "Password");
   }
 
   public static float getValidWage(String wage) throws InvalidFieldException {
