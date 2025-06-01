@@ -23,11 +23,11 @@ public class LoginController extends Controller {
   public void initialize() {
     if (AccountDBProxy.getInstance().hasAdminAccount()) return;
 
-    Modal.displayInfo("Welcome to GigaBank! Please create an Admin Account to get stated.");
+    Modal.displayInfo("Welcome to GigaBank! Please createOne an Admin Account to get stated.");
   }
 
   public void handleAdminAccount() throws InvalidFieldException, DuplicateRecordException, IOException {
-    AccountDTO dataObject = AccountDBProxy.getInstance().createAccount(
+    AccountDTO dataObject = AccountDBProxy.getInstance().createOne(
       new AccountDTO(
         displayNameField.getText(),
         passwordField.getText(),
@@ -45,11 +45,11 @@ public class LoginController extends Controller {
   public void handleLoginAccount() throws InvalidFieldException, NotFoundRecordException {
     String displayName = Validator.getValidDisplayName(displayNameField.getText());
     String password = Validator.getValidPassword(passwordField.getText());
-    AccountDTO dataObject = AccountDBProxy.getInstance().getAccountByDisplayName(displayName);
+    AccountDTO dataObject = AccountDBProxy.getInstance().getOne(displayName);
 
     if (dataObject.hasPasswordMatch(password)) {
       AuthClient.getInstance().setCurrentUser(dataObject);
-      navigateFromThisPageTo("Landing Page", "LandingPage");
+      navigateFromThisPageTo("Landing Page", "LandingAdministratorPage");
     } else {
       Modal.displayError("Invalid credentials. Please try again.");
     }

@@ -7,13 +7,13 @@ import com.gigabank.model.data.AccountDTO;
 import java.io.IOException;
 
 public class AccountDBProxy implements AccountDBServiceShape {
-  private static AccountDBProxy instance;
+  private static AccountDBProxy uniqueInstance;
   private AccountDBService dbService;
 
   private AccountDBProxy () {}
 
   public static AccountDBProxy getInstance() {
-    return instance == null ? (instance = new AccountDBProxy()) : instance;
+    return uniqueInstance == null ? (uniqueInstance = new AccountDBProxy()) : uniqueInstance;
   }
 
   private AccountDBService getDBService() {
@@ -25,13 +25,18 @@ public class AccountDBProxy implements AccountDBServiceShape {
   }
 
   @Override
-  public AccountDTO getAccountByDisplayName(String displayName) throws NotFoundRecordException {
-    return getDBService().getAccountByDisplayName(displayName);
+  public AccountDTO findOne(String displayName) {
+    return getDBService().findOne(displayName);
   }
 
   @Override
-  public AccountDTO createAccount(AccountDTO accountDTO) throws DuplicateRecordException, IOException {
-    return getDBService().createAccount(accountDTO);
+  public AccountDTO getOne(String displayName) throws NotFoundRecordException {
+    return getDBService().getOne(displayName);
+  }
+
+  @Override
+  public AccountDTO createOne(AccountDTO accountDTO) throws DuplicateRecordException, IOException {
+    return getDBService().createOne(accountDTO);
   }
 
   @Override

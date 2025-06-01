@@ -2,8 +2,8 @@ package com.gigabank.model.db;
 
 import java.io.IOException;
 
-public class DBService<T> {
-  private final static String DB_PATH = "src/main/resources/";
+public abstract class DBService<T> {
+  private final static String DB_PATH = "src/main/resources";
   protected final T DB_STORE;
   protected String SERVICE_DB_PATH;
 

@@ -14,7 +14,12 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
   }
 
   @Override
-  public AccountDTO getAccountByDisplayName(String displayName) throws NotFoundRecordException {
+  public AccountDTO findOne(String displayName) {
+    return getDBStore().get(displayName);
+  }
+
+  @Override
+  public AccountDTO getOne(String displayName) throws NotFoundRecordException {
     AccountDTO instance = getDBStore().get(displayName);
 
     if (instance == null) {
@@ -25,7 +30,7 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
   }
 
   @Override
-  public AccountDTO createAccount(AccountDTO accountDTO) throws DuplicateRecordException, IOException {
+  public AccountDTO createOne(AccountDTO accountDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(accountDTO.getDisplayName())) {
       throw new DuplicateRecordException("Account with this display name already exists.");
     }

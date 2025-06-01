@@ -10,12 +10,30 @@ public class Validator {
   private static final String RFC_REGEX = "^[A-Z]{3,4}[0-9]{6}[A-Z0-9]{3}$";
   private static final String DISPLAY_NAME_REGEX = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$";
 
+  private static boolean isValidCURP(String curp) {
+    String trimmed = curp != null ? curp.trim() : null;
+    return trimmed != null && trimmed.matches(CURP_REGEX) && trimmed.length() == 18;
+  }
+
+  private static boolean isValidRFC(String rfc) {
+    String trimmed = rfc != null ? rfc.trim() : null;
+    return trimmed != null && trimmed.matches(RFC_REGEX) && (trimmed.length() == 12 || trimmed.length() == 13);
+  }
+
   private static boolean isValidString(String str, int minLength, int maxLength) {
     return str != null && str.trim().length() >= minLength && str.trim().length() <= maxLength;
   }
 
   private static boolean isValidString(String str, int minLength, int maxLength, String regex) {
     return isValidString(str, minLength, maxLength) && str.trim().matches(regex);
+  }
+
+  public static String getValidCURP(String curp, String fieldName) throws InvalidFieldException {
+    if (isValidCURP(curp)) {
+      return curp.trim();
+    }
+
+    throw new InvalidFieldException(fieldName + " must be 18 characters long and follow the CURP format.");
   }
 
   public static String getValidString(String str, int minLength, int maxLength, String fieldName) throws InvalidFieldException {
@@ -79,6 +97,18 @@ public class Validator {
     throw new InvalidFieldException("Email must be between 5 and 64 characters long and follow the email format.");
   }
 
+  public static String getValidClientID(String id) throws InvalidFieldException {
+    if (isValidCURP(id)) {
+      return getValidCURP(id, "Client ID");
+    }
+
+    if (isValidRFC(id)) {
+      return getValidRFC(id);
+    }
+
+    throw new InvalidFieldException("Client ID must be a valid CURP or RFC.");
+  }
+
   public static String getValidName(String name, int minLength, int maxLength, String fieldName) throws InvalidFieldException {
     return getValidString(name, minLength, maxLength, fieldName, NAME_REGEX_SPANISH, "name");
   }
@@ -92,7 +122,7 @@ public class Validator {
   }
 
   public static String getValidRFC(String rfc) throws InvalidFieldException {
-    if (isValidString(rfc, 12, 13, RFC_REGEX)) {
+    if (isValidRFC(rfc)) {
       return rfc.trim();
     }
 

@@ -4,21 +4,19 @@ import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
 
 public class ClientDTO extends Person {
+  private final String id;
   private final String lastName;
   private final String nationality;
   private final String email;
   private final String phone;
-  private final String curp;
-  private final String rfc;
 
   public ClientDTO(ClientBuilder builder) {
     super(builder);
+    this.id = builder.id;
     this.lastName = builder.lastName;
     this.nationality = builder.nationality;
     this.email = builder.email;
     this.phone = builder.phone;
-    this.curp = builder.curp;
-    this.rfc = builder.rfc;
   }
 
   public String getLastName() {
@@ -37,14 +35,6 @@ public class ClientDTO extends Person {
     return phone;
   }
 
-  public String getCURP() {
-    return curp;
-  }
-
-  public String getRFC() {
-    return rfc;
-  }
-
   @Override
   public boolean equals(Object instance) {
     if (this == instance) return true;
@@ -53,24 +43,22 @@ public class ClientDTO extends Person {
     ClientDTO that = (ClientDTO) instance;
 
     return super.equals(that) &&
+           id.equals(that.id) &&
            lastName.equals(that.lastName) &&
            nationality.equals(that.nationality) &&
            email.equals(that.email) &&
-           phone.equals(that.phone) &&
-           curp.equals(that.curp) &&
-           rfc.equals(that.rfc);
+           phone.equals(that.phone);
   }
 
   public static class ClientBuilder extends PersonBuilder<ClientBuilder> {
+    private String id;
     private String lastName;
     private String nationality;
     private String email;
     private String phone;
-    private String curp;
-    private String rfc;
 
-    public ClientBuilder setLastName(String lastName) throws InvalidFieldException {
-      this.lastName = Validator.getValidName(lastName, 3, 64, "Lastname");
+    public ClientBuilder setID(String id) throws InvalidFieldException {
+      this.id = Validator.getValidClientID(id);
       return this;
     }
 
@@ -86,16 +74,6 @@ public class ClientDTO extends Person {
 
     public ClientBuilder setPhone(String phone) throws InvalidFieldException {
       this.phone = Validator.getValidPhone(phone);
-      return this;
-    }
-
-    public ClientBuilder setCURP(String curp) throws InvalidFieldException {
-      this.curp = Validator.getValidCURP(curp);
-      return this;
-    }
-
-    public ClientBuilder setRFC(String rfc) throws InvalidFieldException {
-      this.rfc = Validator.getValidRFC(rfc);
       return this;
     }
 

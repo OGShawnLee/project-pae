@@ -3,9 +3,10 @@ package com.gigabank.model.data;
 import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
   private final String name;
   private final String address;
   private final LocalDateTime bornAt;

@@ -9,38 +9,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
-            prefWidth="960.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gigabank.controller.LoginController"
-            fx:id="container"
->
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.LoginController">
   <children>
-    <VBox layoutX="320.0" layoutY="166.0" prefWidth="320.0" spacing="16.0">
+    <VBox layoutX="480.0" layoutY="251.0" prefWidth="320.0" spacing="16.0">
       <children>
         <Label styleClass="title" text="Iniciar Sesión">
           <VBox.margin>
-            <Insets/>
+            <Insets />
           </VBox.margin>
           <padding>
-            <Insets bottom="8.0"/>
+            <Insets bottom="8.0" />
           </padding>
         </Label>
         <VBox spacing="8.0">
           <children>
-            <Label text="Nombre de Usuario" styleClass="label"/>
-            <TextField fx:id="displayNameField" promptText="Introduzca su Nombre de Usuario" styleClass="input"/>
+            <Label styleClass="label" text="Nombre de Usuario" />
+            <TextField fx:id="displayNameField" promptText="Introduzca su Nombre de Usuario" styleClass="input" />
           </children>
         </VBox>
         <VBox spacing="8.0">
           <children>
-            <Label text="Contraseña" styleClass="label"/>
-            <PasswordField fx:id="passwordField" promptText="Introduzca su Contraseña" styleClass="input"/>
+            <Label styleClass="label" text="Contraseña" />
+            <PasswordField fx:id="passwordField" promptText="Introduzca su Contraseña" styleClass="input" />
           </children>
         </VBox>
         <HBox>
           <children>
-            <Button onAction="#handleLogin" mnemonicParsing="false" prefWidth="320.0" text="Iniciar Sesión" styleClass="button" />
+            <Button mnemonicParsing="false" onAction="#handleLogin" prefWidth="320.0" styleClass="button" text="Iniciar Sesión" />
           </children>
         </HBox>
       </children>

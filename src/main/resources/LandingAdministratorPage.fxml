@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.LandingAdministratorController">
+  <children>
+    <VBox layoutY="604.0" prefWidth="320.0" spacing="16.0">
+      <children>
+        <Label fx:id="labelDisplayName" styleClass="title" text="\@Nombre de Usuario">
+          <VBox.margin>
+            <Insets />
+          </VBox.margin>
+          <padding>
+            <Insets bottom="8.0" />
+          </padding>
+        </Label>
+        <HBox>
+          <children>
+            <Button mnemonicParsing="false" onAction="#handleLogOut" prefWidth="320.0" styleClass="button" text="Cerrar Sesión" />
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets bottom="32.0" left="32.0" />
+      </padding>
+    </VBox>
+    <VBox layoutX="480.0" layoutY="200.0" prefWidth="320.0" spacing="16.0">
+      <children>
+        <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
+          <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Sucursales" />
+            <Button mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Sucursal" />
+          </children>
+        </HBox>
+        <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
+          <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerente" />
+            <Button onAction="#handleOpenRegisterManager" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Gerente" />
+          </children>
+        </HBox>
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Gerente" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Empleados" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Clientes" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Transacciones" />
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
