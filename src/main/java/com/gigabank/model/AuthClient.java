@@ -1,6 +1,6 @@
 package com.gigabank.model;
 
-import com.gigabank.model.dto.AccountDTO;
+import com.gigabank.model.data.AccountDTO;
 
 public class AuthClient {
   private AccountDTO currentUser;

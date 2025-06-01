@@ -1,4 +1,4 @@
-package com.gigabank.model.dto;
+package com.gigabank.model.data;
 
 import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
