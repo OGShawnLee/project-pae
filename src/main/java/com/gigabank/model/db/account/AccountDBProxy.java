@@ -40,6 +40,11 @@ public class AccountDBProxy implements AccountDBServiceShape {
   }
 
   @Override
+  public void deleteOne(String displayName) throws IOException {
+    getDBService().deleteOne(displayName);
+  }
+
+  @Override
   public boolean hasAdminAccount() {
     return getDBService().hasAdminAccount();
   }

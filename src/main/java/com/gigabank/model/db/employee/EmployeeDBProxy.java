@@ -38,4 +38,9 @@ public class EmployeeDBProxy implements EmployeeDBServiceShape {
   public EmployeeDTO createOne(EmployeeDTO employeeDTO) throws DuplicateRecordException, IOException {
     return getDBService().createOne(employeeDTO);
   }
+
+  @Override
+  public void deleteOne(String displayName) throws IOException {
+    getDBService().deleteOne(displayName);
+  }
 }

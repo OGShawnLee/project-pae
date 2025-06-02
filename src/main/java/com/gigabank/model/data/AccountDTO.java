@@ -31,4 +31,16 @@ public class AccountDTO implements Serializable {
   public boolean hasPasswordMatch(String candidate) {
     return this.password.equals(candidate);
   }
+
+  @Override
+  public boolean equals(Object instance) {
+    if (this == instance) return true;
+    if (instance == null || getClass() != instance.getClass()) return false;
+
+    AccountDTO that = (AccountDTO) instance;
+
+    return displayName.equals(that.displayName) &&
+           password.equals(that.password) &&
+           role == that.role;
+  }
 }

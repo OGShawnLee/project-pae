@@ -40,6 +40,11 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
     return accountDTO;
   }
 
+  public void deleteOne(String displayName) throws IOException {
+    getDBStore().remove(displayName);
+    writeToFile();
+  }
+
   @Override
   public boolean hasAdminAccount() {
     for (AccountDTO account : getDBStore().values()) {

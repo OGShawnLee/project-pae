@@ -8,4 +8,6 @@ public interface DAOShape<T, F> {
   T getOne(F filter) throws NotFoundRecordException;
 
   T createOne(T entity) throws DuplicateRecordException, IOException;
+
+  void deleteOne(F filter) throws IOException;
 }

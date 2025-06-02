@@ -39,4 +39,10 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
     writeToFile();
     return employeeDTO;
   }
+
+  @Override
+  public void deleteOne(String displayName) throws IOException {
+    getDBStore().remove(displayName);
+    writeToFile();
+  }
 }
