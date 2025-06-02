@@ -8,6 +8,7 @@ import com.gigabank.model.db.account.AccountDBProxy;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
 import com.gigabank.model.validation.InvalidFieldException;
 
+import com.gigabank.model.validation.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -37,7 +38,8 @@ public class RegisterManagerController extends Controller {
   @FXML
   private void handleRegister() {
     try {
-      AccountDTO duplicateAccount = AccountDBProxy.getInstance().findOne(displayNameField.getText());
+      String displayName = Validator.getValidDisplayName(displayNameField.getText());
+      AccountDTO duplicateAccount = AccountDBProxy.getInstance().findOne(displayName);
 
       if (duplicateAccount != null) {
         throw new DuplicateRecordException(
@@ -45,7 +47,7 @@ public class RegisterManagerController extends Controller {
         );
       }
 
-      EmployeeDTO duplicateEmployee = EmployeeDBProxy.getInstance().findOne(nameField.getText());
+      EmployeeDTO duplicateEmployee = EmployeeDBProxy.getInstance().findOne(displayName);
 
       if (duplicateEmployee != null) {
         throw new DuplicateRecordException(
@@ -53,23 +55,22 @@ public class RegisterManagerController extends Controller {
         );
       }
 
-      AccountDBProxy.getInstance().createOne(
-        new AccountDTO(
-          displayNameField.getText(),
-          displayNameField.getText() + "@Password",
-          AccountDTO.Role.MANAGER
-        )
+      AccountDTO accountDTO = new AccountDTO(
+        displayName,
+        displayName + "@Password",
+        AccountDTO.Role.MANAGER
       );
-      EmployeeDBProxy.getInstance().createOne(
-        new EmployeeDTO.EmployeeBuilder()
-          .setAddress(addressField.getText())
-          .setBornAt(bornAtDatePicker.getValue().atStartOfDay())
-          .setGender(genderChoiceBox.getValue())
-          .setName(nameField.getText())
-          .setDisplayName(displayNameField.getText())
-          .setWage(wageField.getText())
-          .build()
-      );
+      EmployeeDTO employeeDTO = new EmployeeDTO.EmployeeBuilder()
+        .setAddress(addressField.getText())
+        .setBornAt(bornAtDatePicker.getValue().atStartOfDay())
+        .setGender(genderChoiceBox.getValue())
+        .setName(nameField.getText())
+        .setDisplayName(displayName)
+        .setWage(wageField.getText())
+        .build();
+
+      AccountDBProxy.getInstance().createOne(accountDTO);
+      EmployeeDBProxy.getInstance().createOne(employeeDTO);
 
       Modal.displaySuccess("Manager created successfully.");
     } catch (InvalidFieldException | DuplicateRecordException | IOException e) {
