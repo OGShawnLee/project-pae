@@ -6,6 +6,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.BranchDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements BranchDBServiceShape {
@@ -27,6 +28,11 @@ class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements B
     }
 
     return instance;
+  }
+
+  @Override
+  public ArrayList<BranchDTO> getAll() {
+    return new ArrayList<>(getDBStore().values());
   }
 
   @Override

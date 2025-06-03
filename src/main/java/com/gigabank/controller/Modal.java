@@ -12,12 +12,20 @@ import java.util.Objects;
 
 public class Modal {
   public static void display(String title, String resourceFileName) {
+    display(title, resourceFileName, null);
+  }
+
+  public static void display(String title, String resourceFileName, Runnable onClose) {
     try {
       Parent root = FXMLLoader.load(
         Objects.requireNonNull(Modal.class.getResource("/" + resourceFileName + ".fxml"))
       );
       Scene newScene = new Scene(root);
       Stage modalStage = new Stage();
+
+      if (onClose != null) {
+        modalStage.setOnHidden(event -> onClose.run());
+      }
 
       modalStage.setTitle(title);
       modalStage.setScene(newScene);

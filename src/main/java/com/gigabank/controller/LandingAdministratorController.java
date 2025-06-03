@@ -25,4 +25,8 @@ public class LandingAdministratorController extends Controller {
     AuthClient.getInstance().setCurrentUser(null);
     navigateFromThisPageTo("Login Page", "LoginPage");
   }
+
+  public void navigateToReviewBranchListPage() {
+    ReviewBranchListController.navigateToBranchListPage(getScene());
+  }
 }

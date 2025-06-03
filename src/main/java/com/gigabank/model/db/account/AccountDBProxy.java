@@ -5,6 +5,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.AccountDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AccountDBProxy implements AccountDBServiceShape {
   private static AccountDBProxy uniqueInstance;
@@ -27,6 +28,11 @@ public class AccountDBProxy implements AccountDBServiceShape {
   @Override
   public AccountDTO findOne(String displayName) {
     return getDBService().findOne(displayName);
+  }
+
+  @Override
+  public ArrayList<AccountDTO> getAll() {
+    return getDBService().getAll();
   }
 
   @Override

@@ -5,6 +5,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.EmployeeDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EmployeeDBProxy implements EmployeeDBServiceShape {
   private static EmployeeDBProxy uniqueInstance;
@@ -32,6 +33,11 @@ public class EmployeeDBProxy implements EmployeeDBServiceShape {
   @Override
   public EmployeeDTO getOne(String displayName) throws NotFoundRecordException {
     return getDBService().getOne(displayName);
+  }
+
+  @Override
+  public ArrayList<EmployeeDTO> getAll() {
+    return getDBService().getAll();
   }
 
   @Override

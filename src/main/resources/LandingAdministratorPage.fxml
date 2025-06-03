@@ -33,7 +33,7 @@
       <children>
         <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
           <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Sucursales" />
+            <Button onAction="#navigateToReviewBranchListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Sucursales" />
             <Button onAction="#handleOpenRegisterBranch" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Sucursal" />
           </children>
         </HBox>

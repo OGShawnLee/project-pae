@@ -6,6 +6,7 @@ import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implements EmployeeDBServiceShape {
@@ -27,6 +28,11 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
     }
 
     return instance;
+  }
+
+  @Override
+  public ArrayList<EmployeeDTO> getAll() {
+    return new ArrayList<>(getDBStore().values());
   }
 
   @Override

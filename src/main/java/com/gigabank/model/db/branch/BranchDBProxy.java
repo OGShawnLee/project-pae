@@ -5,6 +5,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.BranchDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class BranchDBProxy implements BranchDBServiceShape {
   private static BranchDBProxy uniqueInstance;
@@ -32,6 +33,11 @@ public class BranchDBProxy implements BranchDBServiceShape {
   @Override
   public BranchDTO getOne(String displayName) throws NotFoundRecordException {
     return getDBService().getOne(displayName);
+  }
+
+  @Override
+  public ArrayList<BranchDTO> getAll() {
+    return getDBService().getAll();
   }
 
   @Override

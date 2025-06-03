@@ -6,6 +6,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.AccountDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements AccountDBServiceShape {
@@ -27,6 +28,11 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
     }
 
     return instance;
+  }
+
+  @Override
+  public ArrayList<AccountDTO> getAll() {
+    return new ArrayList<>(getDBStore().values());
   }
 
   @Override

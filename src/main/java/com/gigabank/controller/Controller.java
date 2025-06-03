@@ -1,5 +1,6 @@
 package com.gigabank.controller;
 
+import com.gigabank.model.AuthClient;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +21,27 @@ public abstract class Controller {
 
   protected void navigateFromThisPageTo(String pageName, String resourceFileName) {
     navigateTo(getScene(), pageName, resourceFileName);
+  }
+
+  @FXML
+  protected void navigateToLandingPage() {
+    switch (AuthClient.getInstance().getCurrentUser().getRole()) {
+      case ADMIN:
+        navigateFromThisPageTo("Landing Page", "LandingAdministratorPage");
+        break;
+      case MANAGER:
+        // TODO: Implement Manager Landing Page
+        navigateFromThisPageTo("Landing Page", "LandingManagerPage");
+        break;
+      case EXECUTIVE:
+        // TODO: Implement Executive Landing Page
+        navigateFromThisPageTo("Landing Page", "LandingExecutivePage");
+        break;
+      case TELLER:
+        // TODO: Implement Teller Landing Page
+        navigateFromThisPageTo("Landing Page", "LandingTellerPage");
+        break;
+    }
   }
 
   protected static void navigateTo(Stage currentStage, String pageName, String resourceFileName) {
