@@ -1,7 +1,5 @@
 package com.gigabank.controller;
 
-import com.gigabank.model.AuthClient;
-import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.BranchDTO;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.branch.BranchDBProxy;
