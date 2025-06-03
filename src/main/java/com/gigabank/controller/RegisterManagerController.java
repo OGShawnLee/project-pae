@@ -7,8 +7,8 @@ import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.account.AccountDBProxy;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
 import com.gigabank.model.validation.InvalidFieldException;
-
 import com.gigabank.model.validation.Validator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;

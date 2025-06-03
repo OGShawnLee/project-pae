@@ -34,16 +34,15 @@
         <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
           <children>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Sucursales" />
-            <Button mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Sucursal" />
+            <Button onAction="#handleOpenRegisterBranch" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Sucursal" />
           </children>
         </HBox>
         <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
           <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerente" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerentes" />
             <Button onAction="#handleOpenRegisterManager" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Gerente" />
           </children>
         </HBox>
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Gerente" />
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Empleados" />
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Clientes" />
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
