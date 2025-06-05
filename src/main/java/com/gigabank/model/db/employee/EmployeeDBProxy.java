@@ -4,6 +4,7 @@ import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.EmployeeDTO;
+import com.gigabank.model.validation.InvalidFieldException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class EmployeeDBProxy implements EmployeeDBServiceShape {
   }
 
   @Override
-  public void updateOne(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException {
+  public void updateOne(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
     getDBService().updateOne(employeeDTO);
   }
 

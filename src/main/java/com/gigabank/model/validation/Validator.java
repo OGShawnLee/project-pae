@@ -1,6 +1,6 @@
 package com.gigabank.model.validation;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Validator {
   private static final String CURP_REGEX = "^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$";
@@ -56,12 +56,12 @@ public class Validator {
     throw new InvalidFieldException("Value doesn't follow the format of a " + formatMessage + ".");
   }
 
-  public static LocalDateTime getValidDateOfBirth(LocalDateTime dateOfBirth) throws InvalidFieldException {
+  public static LocalDate getValidDateOfBirth(LocalDate dateOfBirth) throws InvalidFieldException {
     if (dateOfBirth == null) {
       throw new InvalidFieldException("Date of birth cannot be null.");
     }
 
-    LocalDateTime now = LocalDateTime.now();
+    LocalDate now = LocalDate.now();
     if (dateOfBirth.isAfter(now)) {
       throw new InvalidFieldException("Date of birth cannot be in the future.");
     }

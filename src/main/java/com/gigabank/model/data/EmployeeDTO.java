@@ -5,10 +5,10 @@ import com.gigabank.model.validation.Validator;
 
 public class EmployeeDTO extends Person {
   private final String displayName;
-  private final Gender gender;
-  private final float wage;
+  private Gender gender;
+  private float wage;
   private final AccountDTO.Role role;
-  private final BranchDTO branch;
+  private BranchDTO branch;
 
   private EmployeeDTO(EmployeeBuilder builder) {
     super(builder);
@@ -27,12 +27,24 @@ public class EmployeeDTO extends Person {
     return gender;
   }
 
+  public void setGender(Gender gender) {
+    this.gender = gender;
+  }
+
   public float getWage() {
     return wage;
   }
 
+  public void setWage(float wage) {
+    this.wage = wage;
+  }
+
   public BranchDTO getBranch() {
     return branch;
+  }
+
+  public void setBranch(BranchDTO branch) {
+    this.branch = branch;
   }
 
   public AccountDTO.Role getRole() {

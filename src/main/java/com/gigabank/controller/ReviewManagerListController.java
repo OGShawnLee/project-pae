@@ -30,6 +30,7 @@ public class ReviewManagerListController extends Controller {
   private void initialize() {
     loadTableColumns();
     loadManagerList();
+    loadRowDoubleClickHandler();
   }
 
   private void loadTableColumns() {
@@ -47,6 +48,29 @@ public class ReviewManagerListController extends Controller {
         EmployeeDBProxy.getInstance().getAllByRole(AccountDTO.Role.MANAGER)
       )
     );
+  }
+
+  private void loadRowDoubleClickHandler() {
+    setRowDoubleClickHandler(
+      tableEmployee,
+      (dataObject) -> {
+        Modal.displayManageModal(
+          "Administrar Gerente",
+          "ManageManagerModal",
+          this::reload,
+          dataObject
+        );
+        return null;
+      }
+    );
+  }
+
+  private void reload() {
+    navigateFromThisPageTo("Lista de Gerentes", "ReviewManagerListPage");
+  }
+
+  public void navigateToRegisterManagerPage() {
+    navigateFromThisPageTo("Registrar Gerente", "RegisterManagerPage");
   }
 
   public void handleOpenRegisterManager() {

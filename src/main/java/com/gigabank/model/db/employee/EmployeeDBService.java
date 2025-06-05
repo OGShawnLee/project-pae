@@ -6,6 +6,7 @@ import com.gigabank.model.data.TransactionDTO;
 import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
+import com.gigabank.model.validation.InvalidFieldException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,9 +53,17 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
   }
 
   @Override
-  public void updateOne(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException {
+  public void updateOne(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
     if (getDBStore().containsKey(employeeDTO.getDisplayName())) {
-      getDBStore().put(employeeDTO.getDisplayName(), employeeDTO);
+      EmployeeDTO initial = getDBStore().get(employeeDTO.getDisplayName());
+
+      initial.setName(employeeDTO.getName());
+      initial.setAddress(employeeDTO.getAddress());
+      initial.setBornAt(employeeDTO.getBornAt());
+      initial.setBranch(employeeDTO.getBranch());
+      initial.setGender(employeeDTO.getGender());
+      initial.setWage(employeeDTO.getWage());
+
       writeToFile();
     } else {
       throw new NotFoundRecordException("No ha sido posible actualizar Empleado porque no ha sido encontrado.");

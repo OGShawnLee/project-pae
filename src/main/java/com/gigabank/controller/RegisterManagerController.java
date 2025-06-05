@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -36,19 +37,27 @@ public class RegisterManagerController extends Controller {
   private TextField wageField;
 
   public void initialize() {
-    this.genderChoiceBox.getItems().setAll(Gender.values());
-    this.genderChoiceBox.setValue(Gender.MALE);
-    loadBranchChoiceBox();
+    loadGenderChoiceBox(genderChoiceBox);
+    loadBranchChoiceBox(branchChoiceBox);
   }
 
-  private void loadBranchChoiceBox() {
+  public static void loadGenderChoiceBox(ChoiceBox<Gender> genderChoiceBox) {
+    genderChoiceBox.getItems().setAll(Gender.values());
+    genderChoiceBox.setValue(Gender.MALE);
+  }
+
+  public static void loadBranchChoiceBox(ChoiceBox<BranchDTO> branchChoiceBox) {
     ArrayList<BranchDTO> branches = BranchDBProxy.getInstance().getAll();
     if (branches.isEmpty()) {
       Modal.displayError("No existe una Sucursal registrada. Por favor, registre una Sucursal antes de registrar un Gerente.");
-      Modal.display("Registrar Sucursal", "RegisterBranchModal", this::loadBranchChoiceBox);
+      Modal.display(
+        "Registrar Sucursal",
+        "RegisterBranchModal",
+        () -> loadBranchChoiceBox(branchChoiceBox)
+      );
     } else {
-      this.branchChoiceBox.getItems().setAll(branches);
-      this.branchChoiceBox.setValue(branches.getFirst());
+      branchChoiceBox.getItems().setAll(branches);
+      branchChoiceBox.setValue(branches.getFirst());
     }
   }
 
@@ -79,7 +88,7 @@ public class RegisterManagerController extends Controller {
       );
       EmployeeDTO employeeDTO = new EmployeeDTO.EmployeeBuilder()
         .setAddress(addressField.getText())
-        .setBornAt(bornAtDatePicker.getValue().atStartOfDay())
+        .setBornAt(bornAtDatePicker.getValue())
         .setGender(genderChoiceBox.getValue())
         .setName(nameField.getText())
         .setBranch(branchChoiceBox.getValue())
