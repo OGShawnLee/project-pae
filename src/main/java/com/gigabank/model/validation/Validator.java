@@ -152,4 +152,20 @@ public class Validator {
       throw new InvalidFieldException("Wage must be a valid floating number.");
     }
   }
+
+  public static double getValidAmount(String amount, String fieldName) throws InvalidFieldException {
+    String trimmedAmount = getValidString(amount, 1, 10, fieldName);
+
+    try {
+      double amountDouble = Double.parseDouble(trimmedAmount);
+
+      if (amountDouble < 0) {
+        throw new InvalidFieldException("La" + fieldName + " debe ser un número mayor a cero.");
+      }
+
+      return amountDouble;
+    } catch (NumberFormatException e) {
+      throw new InvalidFieldException("La " + fieldName + " debe ser un número flotante valido.");
+    }
+  }
 }
