@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="720.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.ManageProfileController">
+  <children>
+    <VBox layoutX="200.0" layoutY="109.0" prefWidth="320.0" spacing="16.0">
+      <children>
+        <Label styleClass="title" text="Gestionar Perfil de Empleado">
+          <VBox.margin>
+            <Insets/>
+          </VBox.margin>
+          <padding>
+            <Insets bottom="8.0"/>
+          </padding>
+        </Label>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Nombre de Usuario"/>
+            <TextField fx:id="displayNameField" styleClass="input" disable="true" editable="false"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Nombre Completo"/>
+            <TextField fx:id="nameField" styleClass="input"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Surcursal"/>
+            <ChoiceBox fx:id="branchChoiceBox" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="input"
+                       disable="true"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Salario"/>
+            <TextField fx:id="wageField" styleClass="input" disable="true" editable="false"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Dirección"/>
+            <TextField fx:id="addressField" promptText="Introduzca su Dirección" styleClass="input"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Fecha de Nacimiento"/>
+            <DatePicker fx:id="bornAtDatePicker" maxWidth="1.7976931348623157E308" styleClass="input" disable="true"
+                        editable="false"/>
+          </children>
+        </VBox>
+        <VBox spacing="8.0">
+          <children>
+            <Label styleClass="label" text="Género"/>
+            <ChoiceBox fx:id="genderChoiceBox" maxWidth="1.7976931348623157E308" styleClass="input"/>
+          </children>
+        </VBox>
+        <HBox>
+          <children>
+            <Button mnemonicParsing="false" onAction="#handleManage" prefWidth="320.0" styleClass="button"
+                    text="Actualizar "/>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

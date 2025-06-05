@@ -71,6 +71,20 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
   }
 
   @Override
+  public void updateProfile(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
+    if (getDBStore().containsKey(employeeDTO.getDisplayName())) {
+      EmployeeDTO initial = getDBStore().get(employeeDTO.getDisplayName());
+
+      initial.setName(employeeDTO.getName());
+      initial.setAddress(employeeDTO.getAddress());
+
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar Empleado porque no ha sido encontrado.");
+    }
+  }
+
+  @Override
   public EmployeeDTO createOne(EmployeeDTO employeeDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(employeeDTO.getDisplayName())) {
       throw new DuplicateRecordException("Employee with the given display name already exists.");

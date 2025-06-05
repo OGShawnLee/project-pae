@@ -53,6 +53,11 @@ public class EmployeeDBProxy implements EmployeeDBServiceShape {
   }
 
   @Override
+  public void updateProfile(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
+    getDBService().updateProfile(employeeDTO);
+  }
+
+  @Override
   public EmployeeDTO createOne(EmployeeDTO employeeDTO) throws DuplicateRecordException, IOException {
     return getDBService().createOne(employeeDTO);
   }

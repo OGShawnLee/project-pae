@@ -39,7 +39,6 @@ public class Modal {
 
   public static <T> void displayManageModal(String title, String resourceFileName, Runnable onClose, T dataObject) {
     try {
-
       FXMLLoader loader = new FXMLLoader(
         Objects.requireNonNull(Modal.class.getResource("/" + resourceFileName + ".fxml"))
       );
