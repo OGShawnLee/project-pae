@@ -1,11 +1,13 @@
 package com.gigabank.model.db.employee;
 
+import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.EmployeeDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDBProxy implements EmployeeDBServiceShape {
   private static EmployeeDBProxy uniqueInstance;
@@ -38,6 +40,11 @@ public class EmployeeDBProxy implements EmployeeDBServiceShape {
   @Override
   public ArrayList<EmployeeDTO> getAll() {
     return getDBService().getAll();
+  }
+
+  @Override
+  public List<EmployeeDTO> getAllByRole(AccountDTO.Role role) {
+    return getDBService().getAllByRole(role);
   }
 
   @Override

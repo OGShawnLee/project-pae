@@ -30,6 +30,10 @@ public class LandingAdministratorController extends Controller {
     ReviewBranchListController.navigateToBranchListPage(getScene());
   }
 
+  public void navigateToReviewManagerListPage() {
+    ReviewManagerListController.navigateToManagerListPage(getScene());
+  }
+
   public void navigateToReviewEmployeeListPage() {
     ReviewEmployeeListController.navigateToEmployeeListPage(getScene());
   }

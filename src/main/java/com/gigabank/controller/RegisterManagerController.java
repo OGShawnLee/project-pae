@@ -67,6 +67,7 @@ public class RegisterManagerController extends Controller {
         .setName(nameField.getText())
         .setDisplayName(displayName)
         .setWage(wageField.getText())
+        .setRole(AccountDTO.Role.MANAGER)
         .build();
 
       AccountDBProxy.getInstance().createOne(accountDTO);

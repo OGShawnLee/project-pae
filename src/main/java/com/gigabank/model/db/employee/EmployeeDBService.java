@@ -1,5 +1,6 @@
 package com.gigabank.model.db.employee;
 
+import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
@@ -8,6 +9,7 @@ import com.gigabank.model.db.NotFoundRecordException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implements EmployeeDBServiceShape {
   public EmployeeDBService() {
@@ -33,6 +35,13 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
   @Override
   public ArrayList<EmployeeDTO> getAll() {
     return new ArrayList<>(getDBStore().values());
+  }
+
+  @Override
+  public List<EmployeeDTO> getAllByRole(AccountDTO.Role role) {
+    return getAll().stream()
+      .filter(employee -> employee.getRole() == role)
+      .toList();
   }
 
   @Override
