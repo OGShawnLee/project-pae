@@ -26,6 +26,7 @@ public class ReviewBranchListController extends Controller {
   private void initialize() {
     loadTableColumns();
     loadBranchList();
+    loadRowDoubleClickHandler();
   }
 
   private void loadTableColumns() {
@@ -41,6 +42,25 @@ public class ReviewBranchListController extends Controller {
         BranchDBProxy.getInstance().getAll()
       )
     );
+  }
+
+  private void loadRowDoubleClickHandler() {
+    setRowDoubleClickHandler(
+      tableBranch,
+      (dataObject) -> {
+        Modal.displayManageModal(
+          "Administrar Sucursal",
+          "ManageBranchModal",
+          this::reload,
+          dataObject
+        );
+        return null;
+      }
+    );
+  }
+
+  private void reload() {
+    navigateFromThisPageTo("Lista de Sucursales", "ReviewBranchListPage");
   }
 
   public void handleOpenRegisterBranch() {

@@ -3,6 +3,7 @@ package com.gigabank.model.db.branch;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.BranchDTO;
+import com.gigabank.model.validation.InvalidFieldException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,11 @@ public class BranchDBProxy implements BranchDBServiceShape {
   @Override
   public ArrayList<BranchDTO> getAll() {
     return getDBService().getAll();
+  }
+
+  @Override
+  public void updateOne(BranchDTO accountDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
+    getDBService().updateOne(accountDTO);
   }
 
   @Override

@@ -41,6 +41,11 @@ public class BankAccountDBProxy implements BankAccountDBServiceShape {
   }
 
   @Override
+  public void updateOne(BankAccountDTO accountDTO) throws NotFoundRecordException, IOException {
+    getDBService().updateOne(accountDTO);
+  }
+
+  @Override
   public BankAccountDTO createOne(BankAccountDTO accountDTO) throws DuplicateRecordException, IOException {
     return getDBService().createOne(accountDTO);
   }

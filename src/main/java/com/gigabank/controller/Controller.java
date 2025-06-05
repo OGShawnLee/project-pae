@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Function;
 
 public abstract class Controller {
   @FXML
@@ -58,5 +60,16 @@ public abstract class Controller {
     } catch (IOException e) {
       Modal.displayError("Unable to navigate to: " + pageName + " due to a system error.");
     }
+  }
+
+  protected <T> void setRowDoubleClickHandler(TableView<T> tableView, Function<T, Void> handler) {
+    tableView.setOnMouseClicked(event -> {
+      if (event.getClickCount() == 2) {
+        T selectedItem = tableView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+          handler.apply(selectedItem);
+        }
+      }
+    });
   }
 }

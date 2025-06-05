@@ -41,6 +41,11 @@ public class ClientDBProxy implements ClientDBServiceShape {
   }
 
   @Override
+  public void updateOne(ClientDTO accountDTO) throws NotFoundRecordException, IOException {
+    getDBService().updateOne(accountDTO);
+  }
+
+  @Override
   public ClientDTO createOne(ClientDTO accountDTO) throws DuplicateRecordException, IOException {
     return getDBService().createOne(accountDTO);
   }

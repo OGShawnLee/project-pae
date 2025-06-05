@@ -4,6 +4,7 @@ import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.BranchDTO;
+import com.gigabank.model.validation.InvalidFieldException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,21 @@ class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements B
   @Override
   public ArrayList<BranchDTO> getAll() {
     return new ArrayList<>(getDBStore().values());
+  }
+
+  @Override
+  public void updateOne(BranchDTO branchDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
+    if (getDBStore().containsKey(branchDTO.getEmail())) {
+      BranchDTO initial =  getDBStore().get(branchDTO.getEmail());
+
+      initial.setName(branchDTO.getName());
+      initial.setAddress(branchDTO.getAddress());
+      initial.setPhone(branchDTO.getPhone());
+
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar la sucursal porque no ha sido encontrado.");
+    }
   }
 
   @Override

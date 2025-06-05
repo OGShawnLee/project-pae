@@ -36,6 +36,16 @@ public class TransactionDBService extends DBService<HashMap<String, TransactionD
   }
 
   @Override
+  public void updateOne(TransactionDTO transactionDTO) throws NotFoundRecordException, IOException {
+    if (getDBStore().containsKey(transactionDTO.getID())) {
+      getDBStore().put(transactionDTO.getID(), transactionDTO);
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar Transacción porque no ha sido encontrada.");
+    }
+  }
+
+  @Override
   public TransactionDTO createOne(TransactionDTO transactionDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(transactionDTO.getID())) {
       throw new DuplicateRecordException("Transacción con el identificador dado ya existe.");

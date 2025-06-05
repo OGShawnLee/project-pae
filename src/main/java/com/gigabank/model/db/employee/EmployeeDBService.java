@@ -2,6 +2,7 @@ package com.gigabank.model.db.employee;
 
 import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
+import com.gigabank.model.data.TransactionDTO;
 import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
@@ -48,6 +49,16 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
     }
 
     return employees;
+  }
+
+  @Override
+  public void updateOne(EmployeeDTO employeeDTO) throws NotFoundRecordException, IOException {
+    if (getDBStore().containsKey(employeeDTO.getDisplayName())) {
+      getDBStore().put(employeeDTO.getDisplayName(), employeeDTO);
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar Empleado porque no ha sido encontrado.");
+    }
   }
 
   @Override

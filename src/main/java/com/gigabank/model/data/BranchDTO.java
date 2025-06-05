@@ -22,6 +22,10 @@ public class BranchDTO implements Serializable {
     return name;
   }
 
+  public void setName(String name) throws InvalidFieldException {
+    this.name = Validator.getValidName(name, 8, 64, "Branch Name");
+  }
+
   public String getEmail() {
     return email;
   }
@@ -30,8 +34,16 @@ public class BranchDTO implements Serializable {
     return address;
   }
 
+  public void setAddress(String address) throws InvalidFieldException {
+    this.address = Validator.getValidString(address, 8, 64, "Branch Address");
+  }
+
   public String getPhone() {
     return phone;
+  }
+
+  public void setPhone(String phone) throws InvalidFieldException {
+    this.phone = Validator.getValidPhone(phone);
   }
 
   @Override

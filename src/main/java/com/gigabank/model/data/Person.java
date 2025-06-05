@@ -4,12 +4,12 @@ import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public abstract class Person implements Serializable {
-  private final String name;
-  private final String address;
-  private final LocalDateTime bornAt;
+  private String name;
+  private String address;
+  private LocalDate bornAt;
 
   public Person(PersonBuilder<?> builder) {
     this.name = builder.name;
@@ -21,11 +21,23 @@ public abstract class Person implements Serializable {
     return name;
   }
 
+  public void setName(String name) throws InvalidFieldException {
+    this.name = Validator.getValidName(name, 3, 64, "Name");
+  }
+
+  public void setAddress(String address) throws InvalidFieldException {
+    this.address = Validator.getValidName(address, 3, 128, "Address");
+  }
+
+  public void setBornAt(LocalDate bornAt) throws InvalidFieldException {
+    this.bornAt = Validator.getValidDateOfBirth(bornAt);
+  }
+
   public String getAddress() {
     return address;
   }
 
-  public LocalDateTime getBornAt() {
+  public LocalDate getBornAt() {
     return bornAt;
   }
 
@@ -42,7 +54,7 @@ public abstract class Person implements Serializable {
   public static abstract class PersonBuilder<T extends PersonBuilder<T>> {
     protected String name;
     protected String address;
-    protected LocalDateTime bornAt;
+    protected LocalDate bornAt;
 
     public T self() {
       return (T) this;
@@ -58,7 +70,7 @@ public abstract class Person implements Serializable {
       return self();
     }
 
-    public T setBornAt(LocalDateTime bornAt) throws InvalidFieldException {
+    public T setBornAt(LocalDate bornAt) throws InvalidFieldException {
       this.bornAt = Validator.getValidDateOfBirth(bornAt);
       return self();
     }

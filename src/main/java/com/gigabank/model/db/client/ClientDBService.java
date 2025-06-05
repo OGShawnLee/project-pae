@@ -36,6 +36,16 @@ class ClientDBService extends DBService<HashMap<String, ClientDTO>> implements C
   }
 
   @Override
+  public void updateOne(ClientDTO employeeDTO) throws NotFoundRecordException, IOException {
+    if (getDBStore().containsKey(employeeDTO.getEmail())) {
+      getDBStore().put(employeeDTO.getEmail(), employeeDTO);
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar al Cliente porque no ha sido encontrado.");
+    }
+  }
+
+  @Override
   public ClientDTO createOne(ClientDTO employeeDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(employeeDTO.getEmail())) {
       throw new DuplicateRecordException("Employee with the given display name already exists.");
