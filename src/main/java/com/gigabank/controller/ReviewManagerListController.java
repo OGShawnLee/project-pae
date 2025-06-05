@@ -69,10 +69,6 @@ public class ReviewManagerListController extends Controller {
     navigateFromThisPageTo("Lista de Gerentes", "ReviewManagerListPage");
   }
 
-  public void navigateToRegisterManagerPage() {
-    navigateFromThisPageTo("Registrar Gerente", "RegisterManagerPage");
-  }
-
   public void handleOpenRegisterManager() {
     Modal.display("Registrar Gerente", "RegisterManagerModal", this::loadManagerList);
   }
