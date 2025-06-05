@@ -7,12 +7,14 @@ public class EmployeeDTO extends Person {
   private final String displayName;
   private final Gender gender;
   private final float wage;
+  private final AccountDTO.Role role;
 
   private EmployeeDTO(EmployeeBuilder builder) {
     super(builder);
     this.displayName = builder.displayName;
     this.gender = builder.gender;
     this.wage = builder.wage;
+    this.role = builder.role;
   }
 
   public String getDisplayName() {
@@ -25,6 +27,10 @@ public class EmployeeDTO extends Person {
 
   public float getWage() {
     return wage;
+  }
+
+  public AccountDTO.Role getRole() {
+    return role;
   }
 
   @Override
@@ -45,6 +51,7 @@ public class EmployeeDTO extends Person {
     private String displayName;
     private Gender gender;
     private float wage;
+    private AccountDTO.Role role;
 
     public EmployeeBuilder setDisplayName(String displayName) throws InvalidFieldException {
       this.displayName = Validator.getValidName(displayName, 3, 32, "Username");
@@ -58,6 +65,11 @@ public class EmployeeDTO extends Person {
 
     public EmployeeBuilder setWage(String wage) throws InvalidFieldException {
       this.wage = Validator.getValidWage(wage);
+      return this;
+    }
+
+    public EmployeeBuilder setRole(AccountDTO.Role role) {
+      this.role = role;
       return this;
     }
 
