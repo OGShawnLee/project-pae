@@ -37,6 +37,19 @@ class BankAccountDBService extends DBService<HashMap<String, BankAccountDTO>> im
   }
 
   @Override
+  public ArrayList<BankAccountDTO> getAllByBranch(BranchDTO branch) {
+    ArrayList<BankAccountDTO> accounts = new ArrayList<>();
+
+    for (BankAccountDTO account : getDBStore().values()) {
+      if (account.getBranch().getEmail().equals(branch.getEmail())) {
+        accounts.add(account);
+      }
+    }
+
+    return accounts;
+  }
+
+  @Override
   public void updateOne(BankAccountDTO bankAccountDTO) throws NotFoundRecordException, IOException {
     if (getDBStore().containsKey(bankAccountDTO.getID())) {
       getDBStore().put(bankAccountDTO.getID(), bankAccountDTO);
@@ -49,7 +62,7 @@ class BankAccountDBService extends DBService<HashMap<String, BankAccountDTO>> im
   @Override
   public BankAccountDTO createOne(BankAccountDTO bankAccountDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(bankAccountDTO.getID())) {
-      throw new DuplicateRecordException("Cuenta Bancaria con la identificación dada ya existe.");
+      throw new DuplicateRecordException("Cuenta Bancaria con la identificación introducida ya existe.");
     }
 
     getDBStore().put(bankAccountDTO.getID(), bankAccountDTO);

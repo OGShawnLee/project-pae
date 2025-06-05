@@ -25,7 +25,7 @@ class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements B
     BranchDTO instance = getDBStore().get(email);
 
     if (instance == null) {
-      throw new NotFoundRecordException("Branch with email '" + email + "' not found.");
+      throw new NotFoundRecordException("Sucursal con el correo electrónico: '" + email + "' no ha sido encontrado.");
     }
 
     return instance;
@@ -54,7 +54,7 @@ class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements B
   @Override
   public BranchDTO createOne(BranchDTO branchDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(branchDTO.getEmail())) {
-      throw new DuplicateRecordException("Branch with given email already exists.");
+      throw new DuplicateRecordException("Sucursal con el correo electrónico ya existe.");
     }
 
     getDBStore().put(branchDTO.getEmail(), branchDTO);

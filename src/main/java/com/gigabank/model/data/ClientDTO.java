@@ -63,7 +63,7 @@ public class ClientDTO extends Person {
     }
 
     public ClientBuilder setNationality(String nationality) throws InvalidFieldException {
-      this.nationality = Validator.getValidName(nationality, 3, 64, "Nationality");
+      this.nationality = Validator.getValidName(nationality, 3, 64, "Nacionalidad");
       return this;
     }
 

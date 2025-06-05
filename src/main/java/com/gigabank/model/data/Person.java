@@ -22,11 +22,11 @@ public abstract class Person implements Serializable {
   }
 
   public void setName(String name) throws InvalidFieldException {
-    this.name = Validator.getValidName(name, 3, 64, "Name");
+    this.name = Validator.getValidName(name, 3, 64, "Nombre");
   }
 
   public void setAddress(String address) throws InvalidFieldException {
-    this.address = Validator.getValidName(address, 3, 128, "Address");
+    this.address = Validator.getValidName(address, 3, 128, "Dirección");
   }
 
   public void setBornAt(LocalDate bornAt) throws InvalidFieldException {
@@ -61,12 +61,12 @@ public abstract class Person implements Serializable {
     }
 
     public T setName(String name) throws InvalidFieldException {
-      this.name = Validator.getValidName(name, 3, 64, "Name");
+      this.name = Validator.getValidName(name, 3, 64, "Nombre");
       return self();
     }
 
     public T setAddress(String address) throws InvalidFieldException {
-      this.address = Validator.getValidName(address, 3, 128, "Address");
+      this.address = Validator.getValidName(address, 3, 128, "Dirección");
       return self();
     }
 

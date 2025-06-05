@@ -73,7 +73,7 @@ public class EmployeeDTO extends Person {
     private BranchDTO branch;
 
     public EmployeeBuilder setDisplayName(String displayName) throws InvalidFieldException {
-      this.displayName = Validator.getValidName(displayName, 3, 32, "Username");
+      this.displayName = Validator.getValidName(displayName, 3, 32, "Nombre de Usuario");
       return this;
     }
 

@@ -33,7 +33,7 @@ public class Validator {
       return curp.trim();
     }
 
-    throw new InvalidFieldException(fieldName + " must be 18 characters long and follow the CURP format.");
+    throw new InvalidFieldException(fieldName + " debe tener 18 caracteres y seguir el formato de CURP.");
   }
 
   public static String getValidString(String str, int minLength, int maxLength, String fieldName) throws InvalidFieldException {
@@ -41,7 +41,7 @@ public class Validator {
       return str.trim();
     }
 
-    throw new InvalidFieldException(fieldName + " must be between" + minLength + " and " + maxLength + " characters long.");
+    throw new InvalidFieldException(fieldName + " debe tener entre " + minLength + " y " + maxLength + " caracteres.");
   }
 
   public static String getValidString(
@@ -53,21 +53,21 @@ public class Validator {
       return trimmedStr;
     }
 
-    throw new InvalidFieldException("Value doesn't follow the format of a " + formatMessage + ".");
+    throw new InvalidFieldException("El valor no sigue el formato de " + formatMessage + ".");
   }
 
   public static LocalDate getValidDateOfBirth(LocalDate dateOfBirth) throws InvalidFieldException {
     if (dateOfBirth == null) {
-      throw new InvalidFieldException("Date of birth cannot be null.");
+      throw new InvalidFieldException("La fecha de nacimiento no puede ser nula.");
     }
 
     LocalDate now = LocalDate.now();
     if (dateOfBirth.isAfter(now)) {
-      throw new InvalidFieldException("Date of birth cannot be in the future.");
+      throw new InvalidFieldException("La fecha de nacimiento no puede estar en el futuro.");
     }
 
     if (dateOfBirth.isAfter(now.minusYears(18))) {
-      throw new InvalidFieldException("Date of birth must be at least 18 years ago.");
+      throw new InvalidFieldException("La fecha de nacimiento debe ser al menos hace 18 años.");
     }
 
     return dateOfBirth;
@@ -78,7 +78,7 @@ public class Validator {
       return displayName.trim();
     }
 
-    throw new InvalidFieldException("Display name must be between 3 and 64 characters long and follow the display name format.");
+    throw new InvalidFieldException("El nombre para mostrar debe tener entre 3 y 64 caracteres y seguir el formato adecuado.");
   }
 
   public static String getValidCURP(String curp) throws InvalidFieldException {
@@ -86,7 +86,7 @@ public class Validator {
       return curp.trim();
     }
 
-    throw new InvalidFieldException("CURP must be 18 characters long and follow the CURP format.");
+    throw new InvalidFieldException("La CURP debe tener 18 caracteres y seguir el formato adecuado.");
   }
 
   public static String getValidEmail(String email) throws InvalidFieldException {
@@ -94,31 +94,31 @@ public class Validator {
       return email.trim();
     }
 
-    throw new InvalidFieldException("Email must be between 5 and 64 characters long and follow the email format.");
+    throw new InvalidFieldException("El correo electrónico debe tener entre 5 y 64 caracteres y seguir el formato adecuado.");
   }
 
   public static String getValidClientID(String id) throws InvalidFieldException {
     if (isValidCURP(id)) {
-      return getValidCURP(id, "Client ID");
+      return getValidCURP(id, "ID de cliente");
     }
 
     if (isValidRFC(id)) {
       return getValidRFC(id);
     }
 
-    throw new InvalidFieldException("Client ID must be a valid CURP or RFC.");
+    throw new InvalidFieldException("El ID de cliente debe ser una CURP o RFC válida.");
   }
 
   public static String getValidName(String name, int minLength, int maxLength, String fieldName) throws InvalidFieldException {
-    return getValidString(name, minLength, maxLength, fieldName, NAME_REGEX_SPANISH, "name");
+    return getValidString(name, minLength, maxLength, fieldName, NAME_REGEX_SPANISH, "nombre");
   }
 
   public static String getValidPhone(String phone) throws InvalidFieldException {
-    if (isValidString(phone, 8, 8, PHONE_REGEX)) {
+    if (isValidString(phone, 10, 10, PHONE_REGEX)) {
       return phone.trim();
     }
 
-    throw new InvalidFieldException("Phone must be 8 characters long and follow the phone format.");
+    throw new InvalidFieldException("El teléfono debe tener 8 caracteres y seguir el formato adecuado.");
   }
 
   public static String getValidRFC(String rfc) throws InvalidFieldException {
@@ -126,30 +126,30 @@ public class Validator {
       return rfc.trim();
     }
 
-    throw new InvalidFieldException("RFC must be between 12 and 13 characters long and follow the RFC format.");
+    throw new InvalidFieldException("El RFC debe tener entre 12 y 13 caracteres y seguir el formato adecuado.");
   }
 
   public static String getValidPassword(String password) throws InvalidFieldException {
-    return getValidString(password, 8, 64, "Password");
+    return getValidString(password, 8, 64, "Contraseña");
   }
 
   public static float getValidWage(String wage) throws InvalidFieldException {
-    String trimmedWage = getValidString(wage, 1, 10, "Wage");
+    String trimmedWage = getValidString(wage, 1, 10, "Salario");
 
     try {
       float wageFloat = Float.parseFloat(trimmedWage);
 
       if (wageFloat < 1600) {
-        throw new InvalidFieldException("Wage must be 1600 or greater.");
+        throw new InvalidFieldException("El salario debe ser igual o mayor a 1600.");
       }
 
       if (wageFloat > 6000) {
-        throw new InvalidFieldException("Wage must be 6000 or less.");
+        throw new InvalidFieldException("El salario debe ser igual o menor a 6000.");
       }
 
       return wageFloat;
     } catch (NumberFormatException e) {
-      throw new InvalidFieldException("Wage must be a valid floating number.");
+      throw new InvalidFieldException("El salario debe ser un número flotante válido.");
     }
   }
 
@@ -160,12 +160,12 @@ public class Validator {
       double amountDouble = Double.parseDouble(trimmedAmount);
 
       if (amountDouble < 0) {
-        throw new InvalidFieldException("La" + fieldName + " debe ser un número mayor a cero.");
+        throw new InvalidFieldException("El valor de " + fieldName + " debe ser un número mayor a cero.");
       }
 
       return amountDouble;
     } catch (NumberFormatException e) {
-      throw new InvalidFieldException("La " + fieldName + " debe ser un número flotante valido.");
+      throw new InvalidFieldException("El valor de " + fieldName + " debe ser un número flotante válido.");
     }
   }
 }

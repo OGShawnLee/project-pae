@@ -2,7 +2,6 @@ package com.gigabank.model.db.employee;
 
 import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
-import com.gigabank.model.data.TransactionDTO;
 import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
@@ -11,7 +10,6 @@ import com.gigabank.model.validation.InvalidFieldException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implements EmployeeDBServiceShape {
   public EmployeeDBService() {
@@ -28,7 +26,7 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
     EmployeeDTO instance = getDBStore().get(displayName);
 
     if (instance == null) {
-      throw new NotFoundRecordException("Employee with the given display name '" + displayName + "' not found.");
+      throw new NotFoundRecordException("Empleado con el nombre de usuario: '" + displayName + "' no ha sido encontrado.");
     }
 
     return instance;
@@ -87,7 +85,7 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
   @Override
   public EmployeeDTO createOne(EmployeeDTO employeeDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(employeeDTO.getDisplayName())) {
-      throw new DuplicateRecordException("Employee with the given display name already exists.");
+      throw new DuplicateRecordException("Empleado con el nombre de usuario introducido ya existe.");
     }
 
     getDBStore().put(employeeDTO.getDisplayName(), employeeDTO);

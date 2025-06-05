@@ -12,9 +12,9 @@ public class BranchDTO implements Serializable {
   private String phone;
 
   public BranchDTO(String name, String email, String address, String phone) throws InvalidFieldException {
-    this.name = Validator.getValidName(name, 8, 64, "Branch Name");
+    this.name = Validator.getValidName(name, 8, 64, "Nombre de Surcusal");
     this.email = Validator.getValidEmail(email);
-    this.address = Validator.getValidString(address, 8, 64, "Branch Address");
+    this.address = Validator.getValidString(address, 8, 64, "Dirección de Sucursal");
     this.phone = Validator.getValidPhone(phone);
   }
 
@@ -23,7 +23,7 @@ public class BranchDTO implements Serializable {
   }
 
   public void setName(String name) throws InvalidFieldException {
-    this.name = Validator.getValidName(name, 8, 64, "Branch Name");
+    this.name = Validator.getValidName(name, 8, 64, "Nombre de Surcusal");
   }
 
   public String getEmail() {
@@ -35,7 +35,7 @@ public class BranchDTO implements Serializable {
   }
 
   public void setAddress(String address) throws InvalidFieldException {
-    this.address = Validator.getValidString(address, 8, 64, "Branch Address");
+    this.address = Validator.getValidString(address, 8, 64, "Dirección de Sucursal");
   }
 
   public String getPhone() {
