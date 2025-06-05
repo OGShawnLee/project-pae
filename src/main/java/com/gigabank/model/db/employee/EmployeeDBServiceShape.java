@@ -4,8 +4,8 @@ import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.db.DAOShape;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface EmployeeDBServiceShape extends DAOShape<EmployeeDTO, String> {
-  List<EmployeeDTO> getAllByRole(AccountDTO.Role role);
+  ArrayList<EmployeeDTO> getAllByRole(AccountDTO.Role role);
 }

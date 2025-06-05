@@ -38,10 +38,16 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
   }
 
   @Override
-  public List<EmployeeDTO> getAllByRole(AccountDTO.Role role) {
-    return getAll().stream()
-      .filter(employee -> employee.getRole() == role)
-      .toList();
+  public ArrayList<EmployeeDTO> getAllByRole(AccountDTO.Role role) {
+    ArrayList<EmployeeDTO> employees = new ArrayList<>();
+
+    for (EmployeeDTO employee : getAll()) {
+      if (employee.getRole() == role) {
+        employees.add(employee);
+      }
+    }
+
+    return employees;
   }
 
   @Override

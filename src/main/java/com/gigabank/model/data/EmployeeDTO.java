@@ -8,6 +8,7 @@ public class EmployeeDTO extends Person {
   private final Gender gender;
   private final float wage;
   private final AccountDTO.Role role;
+  private final BranchDTO branch;
 
   private EmployeeDTO(EmployeeBuilder builder) {
     super(builder);
@@ -15,6 +16,7 @@ public class EmployeeDTO extends Person {
     this.gender = builder.gender;
     this.wage = builder.wage;
     this.role = builder.role;
+    this.branch = builder.branch;
   }
 
   public String getDisplayName() {
@@ -27,6 +29,10 @@ public class EmployeeDTO extends Person {
 
   public float getWage() {
     return wage;
+  }
+
+  public BranchDTO getBranch() {
+    return branch;
   }
 
   public AccountDTO.Role getRole() {
@@ -52,6 +58,7 @@ public class EmployeeDTO extends Person {
     private Gender gender;
     private float wage;
     private AccountDTO.Role role;
+    private BranchDTO branch;
 
     public EmployeeBuilder setDisplayName(String displayName) throws InvalidFieldException {
       this.displayName = Validator.getValidName(displayName, 3, 32, "Username");
@@ -70,6 +77,11 @@ public class EmployeeDTO extends Person {
 
     public EmployeeBuilder setRole(AccountDTO.Role role) {
       this.role = role;
+      return this;
+    }
+
+    public EmployeeBuilder setBranch(BranchDTO branch) {
+      this.branch = branch;
       return this;
     }
 

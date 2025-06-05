@@ -33,4 +33,9 @@ public class BranchDTO implements Serializable {
   public String getPhone() {
     return phone;
   }
+
+  @Override
+  public String toString() {
+    return name + " (" + email + ")";
+  }
 }
