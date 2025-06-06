@@ -52,10 +52,6 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
     );
   }
 
-  public void handleOpenRegisterEmployee() {
-    Modal.display("Registrar Empleado", "RegisterEmployeeModal", this::loadEmployeeList);
-  }
-
   @Override
   public void handleExportToCSV() {
     var employees = EmployeeDBProxy.getInstance().getAll();
@@ -97,8 +93,17 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
     );
   }
 
+  public void handleOpenRegisterEmployee() {
+    Modal.display("Registrar Empleado", "RegisterEmployeeModal", this::loadEmployeeList);
+  }
+
   public void handleEditEmployee() {
-    // Lógica para editar empleado
+    EmployeeDTO selected = tableEmployee.getSelectionModel().getSelectedItem();
+    if (selected == null) {
+      Modal.displayError("Seleccione un empleado para editar.");
+      return;
+    }
+    Modal.displayManageModal("Gestionar Empleado", "ManageEmployeeModal", this::loadEmployeeList, selected);
   }
 
   public void handleDeleteEmployee() {
