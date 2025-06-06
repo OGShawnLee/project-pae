@@ -11,43 +11,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.ReviewTransactionListController">
-    <content>
-        <AnchorPane fx:id="container" prefHeight="720.0" prefWidth="1280.0">
-            <VBox layoutX="172.0" prefHeight="720.0" prefWidth="950.0" spacing="16.0">
-                <children>
-                    <Label text="Lista de Transacciones">
-                        <font>
-                            <Font size="24.0"/>
-                        </font>
-                    </Label>
-                    <HBox alignment="CENTER_LEFT" spacing="32.0" VBox.vgrow="ALWAYS">
-                        <children>
-                            <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
-                            <Button mnemonicParsing="false" onMouseClicked="#handleExportToCSV" text="Exportar Lista a CSV" />
-                            <Button mnemonicParsing="false" onMouseClicked="#handleExportToJSON" text="Exportar Lista a JSON" />
-                        </children>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="16.0">
-                        <children>
-                            <Button mnemonicParsing="false" onMouseClicked="#handleEditTransaction" text="Editar" />
-                            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteTransaction" text="Eliminar" />
-                        </children>
-                    </HBox>
-                    <TableView fx:id="tableTransaction" prefHeight="592.0" prefWidth="950.0">
-                        <columns>
-                            <TableColumn fx:id="columnId" prefWidth="120.0" text="ID"/>
-                            <TableColumn fx:id="columnSourceAccount" prefWidth="180.0" text="Cuenta Origen"/>
-                            <TableColumn fx:id="columnDestinationAccount" prefWidth="180.0" text="Cuenta Destino"/>
-                            <TableColumn fx:id="columnType" prefWidth="120.0" text="Tipo"/>
-                            <TableColumn fx:id="columnAmount" prefWidth="150.0" text="Monto"/>
-                        </columns>
-                    </TableView>
-                </children>
-                <padding>
-                    <Insets bottom="32.0" top="32.0"/>
-                </padding>
-            </VBox>
-        </AnchorPane>
-    </content>
+<ScrollPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.ReviewTransactionListController">
+  <content>
+    <AnchorPane fx:id="container" prefHeight="720.0" prefWidth="1280.0">
+      <VBox layoutX="172.0" prefHeight="720.0" prefWidth="950.0" spacing="16.0">
+        <children>
+          <Label text="Lista de Transacciones">
+            <font>
+              <Font size="24.0"/>
+            </font>
+          </Label>
+          <HBox alignment="CENTER_LEFT" spacing="32.0" VBox.vgrow="ALWAYS">
+            <children>
+              <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterTransaction" text="Registrar Transacción"
+                      HBox.hgrow="ALWAYS"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToCSV" text="Exportar Lista a CSV"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToJSON" text="Exportar Lista a JSON"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="16.0">
+            <children>
+              <Button mnemonicParsing="false" onMouseClicked="#handleEditTransaction" text="Editar"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleDeleteTransaction" text="Eliminar"/>
+            </children>
+          </HBox>
+          <TableView fx:id="tableTransaction" prefHeight="592.0" prefWidth="950.0">
+            <columns>
+              <TableColumn fx:id="columnID" prefWidth="120.0" text="ID"/>
+              <TableColumn fx:id="columnSourceAccount" prefWidth="180.0" text="Cuenta Origen"/>
+              <TableColumn fx:id="columnDestinationAccount" prefWidth="180.0" text="Cuenta Destino"/>
+              <TableColumn fx:id="columnType" prefWidth="120.0" text="Tipo"/>
+              <TableColumn fx:id="columnAmount" prefWidth="150.0" text="Monto"/>
+            </columns>
+          </TableView>
+        </children>
+        <padding>
+          <Insets bottom="32.0" top="32.0"/>
+        </padding>
+      </VBox>
+    </AnchorPane>
+  </content>
 </ScrollPane>

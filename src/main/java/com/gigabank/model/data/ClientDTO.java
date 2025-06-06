@@ -17,8 +17,17 @@ public class ClientDTO extends Person {
     this.phone = builder.phone;
   }
 
+  @Override
+  public String toString() {
+    return getFullName() + " (" + getEmail() + ")";
+  }
+
   public String getLastName() {
     return lastName;
+  }
+
+  public String getFullName() {
+    return getName() + " " + getLastName();
   }
 
   public String getNationality() {
@@ -52,6 +61,11 @@ public class ClientDTO extends Person {
     private String nationality;
     private String email;
     private String phone;
+
+    public ClientBuilder setLastName(String lastName) throws InvalidFieldException {
+      this.lastName = Validator.getValidName(lastName, 3, 64, "Apellido");
+      return this;
+    }
 
     public ClientBuilder setNationality(String nationality) throws InvalidFieldException {
       this.nationality = Validator.getValidName(nationality, 3, 64, "Nacionalidad");

@@ -1,6 +1,7 @@
 package com.gigabank.model.db.bank_account;
 
 import com.gigabank.model.data.BranchDTO;
+import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.db.DBService;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
@@ -51,7 +52,13 @@ class BankAccountDBService extends DBService<HashMap<String, BankAccountDTO>> im
   @Override
   public void updateOne(BankAccountDTO bankAccountDTO) throws NotFoundRecordException, IOException {
     if (getDBStore().containsKey(bankAccountDTO.getID())) {
-      getDBStore().put(bankAccountDTO.getID(), bankAccountDTO);
+      BankAccountDTO initial = getDBStore().get(bankAccountDTO.getID());
+
+      initial.setBalance(bankAccountDTO.getBalance());
+      initial.setLimit(bankAccountDTO.getLimit());
+      initial.setType(bankAccountDTO.getType());
+
+      getDBStore().put(bankAccountDTO.getID(), initial);
       writeToFile();
     } else {
       throw new NotFoundRecordException("No ha sido posible actualizar la cuenta bancaría porque no ha sido encontrada.");

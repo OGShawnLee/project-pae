@@ -1,5 +1,6 @@
 package com.gigabank.model.db.bank_account;
 
+import com.gigabank.model.data.BranchDTO;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.NotFoundRecordException;
 import com.gigabank.model.data.BankAccountDTO;
@@ -33,6 +34,11 @@ public class BankAccountDBProxy implements BankAccountDBServiceShape {
   @Override
   public ArrayList<BankAccountDTO> getAll() {
     return getDBService().getAll();
+  }
+
+  @Override
+  public ArrayList<BankAccountDTO> getAllByBranch(BranchDTO branchDTO) {
+    return getDBService().getAllByBranch(branchDTO);
   }
 
   @Override

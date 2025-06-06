@@ -66,7 +66,7 @@ public abstract class Person implements Serializable {
     }
 
     public T setAddress(String address) throws InvalidFieldException {
-      this.address = Validator.getValidName(address, 3, 128, "Dirección");
+      this.address = Validator.getValidString(address, 3, 128, "Dirección");
       return self();
     }
 

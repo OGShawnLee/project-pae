@@ -3,7 +3,9 @@ package com.gigabank.model.data;
 import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
 
-public class BankAccountDTO {
+import java.io.Serializable;
+
+public class BankAccountDTO implements Serializable {
   public enum AccountType {
     COMMON, BUSINESS, SAVINGS
   }
@@ -31,6 +33,15 @@ public class BankAccountDTO {
     this.limit = Validator.getValidAmount(limit, "Limite de Crédito");
   }
 
+  @Override
+  public String toString() {
+    return client.getFullName() + " [" + branch.getEmail() + "]" + " (" + getShortID()  + ")";
+  }
+
+  public String getShortID() {
+    return id.substring(0, id.indexOf("-")) + "..." + id.substring(id.lastIndexOf("-") - 4);
+  }
+
   public String getID() {
     return id;
   }
@@ -47,6 +58,10 @@ public class BankAccountDTO {
     return limit;
   }
 
+  public void setLimit(double limit) {
+    this.limit = limit;
+  }
+
   public ClientDTO getClient() {
     return client;
   }
@@ -57,5 +72,9 @@ public class BankAccountDTO {
 
   public AccountType getType() {
     return type;
+  }
+
+  public void setType(AccountType type) {
+    this.type = type;
   }
 }
