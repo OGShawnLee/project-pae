@@ -4,7 +4,6 @@ import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
 
 public class ClientDTO extends Person {
-  private final String id;
   private final String lastName;
   private final String nationality;
   private final String email;
@@ -12,7 +11,6 @@ public class ClientDTO extends Person {
 
   public ClientDTO(ClientBuilder builder) {
     super(builder);
-    this.id = builder.id;
     this.lastName = builder.lastName;
     this.nationality = builder.nationality;
     this.email = builder.email;
@@ -43,7 +41,6 @@ public class ClientDTO extends Person {
     ClientDTO that = (ClientDTO) instance;
 
     return super.equals(that) &&
-           id.equals(that.id) &&
            lastName.equals(that.lastName) &&
            nationality.equals(that.nationality) &&
            email.equals(that.email) &&
@@ -51,16 +48,10 @@ public class ClientDTO extends Person {
   }
 
   public static class ClientBuilder extends PersonBuilder<ClientBuilder> {
-    private String id;
     private String lastName;
     private String nationality;
     private String email;
     private String phone;
-
-    public ClientBuilder setID(String id) throws InvalidFieldException {
-      this.id = Validator.getValidClientID(id);
-      return this;
-    }
 
     public ClientBuilder setNationality(String nationality) throws InvalidFieldException {
       this.nationality = Validator.getValidName(nationality, 3, 64, "Nacionalidad");

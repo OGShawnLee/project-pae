@@ -11,10 +11,9 @@ import java.io.IOException;
 public interface FileExporter {
   void handleExportToCSV();
 
-  default void handleExportToJSON(Object instance, String title,Window window
-  ) {
+  default void handleExportToJSON(Object instance, String title, Window window) {
     FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Exportar Lista de Gerentes");
+    fileChooser.setTitle(title);
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
 
     File file = fileChooser.showSaveDialog(window);
@@ -25,7 +24,7 @@ public interface FileExporter {
         objectMapper.writeValue(file, instance);
         Modal.displaySuccess("Archivo JSON " + file.getName() + " exportado correctamente.");
       } catch (IOException e) {
-        Modal.displayError("Error al exportar la lista de gerentes.");
+        Modal.displayError("Error al exportar la lista a formato JSON.");
       }
     }
   }
