@@ -121,7 +121,12 @@ public class ReviewManagerListController extends Controller implements FileExpor
   }
 
   public void handleEditManager() {
-    // Lógica para editar empleado
+    EmployeeDTO selected = tableEmployee.getSelectionModel().getSelectedItem();
+    if (selected == null) {
+      Modal.displayError("Seleccione un gerente para editar.");
+      return;
+    }
+    Modal.displayManageModal("Gestionar Gerente", "ManageManagerModal", this::loadManagerList, selected);
   }
 
   public void handleDeleteManager() {
