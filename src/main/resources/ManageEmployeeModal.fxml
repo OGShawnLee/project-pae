@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="container" prefHeight="720.0" prefWidth="720.0" stylesheets="@main.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gigabank.controller.ManageEmployeeController">
+    <children>
+        <VBox layoutX="200.0" layoutY="50.0" prefWidth="320.0" spacing="16.0">
+            <children>
+                <Label styleClass="title" text="Gestionar Empleado"/>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Nombre de Usuario"/>
+                        <TextField fx:id="displayNameField" promptText="Introduzca el nombre de usuario" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Nombre Completo"/>
+                        <TextField fx:id="nameField" promptText="Introduzca el nombre completo" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Salario"/>
+                        <TextField fx:id="wageField" promptText="Introduzca el salario" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Dirección"/>
+                        <TextField fx:id="addressField" promptText="Introduzca la dirección" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Fecha de Nacimiento"/>
+                        <DatePicker fx:id="bornAtDatePicker" promptText="Fecha de nacimiento" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <children>
+                        <Label styleClass="label" text="Género"/>
+                        <ChoiceBox fx:id="genderChoiceBox" styleClass="input"/>
+                    </children>
+                </VBox>
+
+                <HBox>
+                    <children>
+                        <Button text="Actualizar Empleado" onAction="#handleManage" styleClass="button" prefWidth="320.0"/>
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
