@@ -36,7 +36,6 @@
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#handleEditBranch" text="Editar"/>
               <Button mnemonicParsing="false" onMouseClicked="#handleDeleteBranch" text="Eliminar"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleExportBranches" text="Exportar"/>
             </children>
           </HBox>
           <TableView fx:id="tableBranch" prefHeight="592.0" prefWidth="950.0">

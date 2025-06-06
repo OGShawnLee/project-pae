@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ReviewEmployeeListController extends Controller {
+public class ReviewEmployeeListController extends Controller implements FileExporter {
   @FXML
   private TableView<EmployeeDTO> tableEmployee;
   @FXML
@@ -56,16 +56,53 @@ public class ReviewEmployeeListController extends Controller {
     Modal.display("Registrar Empleado", "RegisterEmployeeModal", this::loadEmployeeList);
   }
 
+  @Override
+  public void handleExportToCSV() {
+    var employees = EmployeeDBProxy.getInstance().getAll();
+
+    javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+    fileChooser.setTitle("Exportar Lista de Empleados");
+    fileChooser.getExtensionFilters().add(
+            new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv")
+    );
+
+    java.io.File file = fileChooser.showSaveDialog(tableEmployee.getScene().getWindow());
+
+    if (file != null) {
+      try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+              new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+        writer.write("Nombre de Usuario,Nombre,Género,Sueldo,Dirección,Fecha de Nacimiento,Rol\n");
+        for (var emp : employees) {
+          writer.write(String.format("%s,%s,%s,%.2f,%s,%s,%s\n",
+                  emp.getDisplayName(),
+                  emp.getName(),
+                  emp.getGender(),
+                  emp.getWage(),
+                  emp.getAddress(),
+                  emp.getBornAt().toString(),
+                  emp.getRole() != null ? emp.getRole().name() : "-"
+          ));
+        }
+      } catch (java.io.IOException e) {
+        Modal.displayError("Error al exportar la lista de empleados.");
+      }
+    }
+  }
+
+  public void handleExportToJSON() {
+    handleExportToJSON(
+            EmployeeDBProxy.getInstance().getAll(),
+            "Exportar Lista de Empleados",
+            tableEmployee.getScene().getWindow()
+    );
+  }
+
   public void handleEditEmployee() {
     // Lógica para editar empleado
   }
 
   public void handleDeleteEmployee() {
     // Lógica para eliminar empleado
-  }
-
-  public void handleExportEmployees() {
-    // Lógica para exportar empleados
   }
 
   public static void navigateToEmployeeListPage(Stage currentStage) {

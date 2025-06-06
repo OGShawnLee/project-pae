@@ -9,7 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ReviewClientListController extends Controller {
+public class ReviewClientListController extends Controller implements FileExporter {
     @FXML
     private TableView<ClientDTO> tableClient;
     @FXML
@@ -52,13 +52,49 @@ public class ReviewClientListController extends Controller {
         Modal.display("Registrar Cliente", "RegisterClientModal", this::loadClientList);
     }
 
+    @Override
+    public void handleExportToCSV() {
+        var clients = ClientDBProxy.getInstance().getAll();
+
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        fileChooser.setTitle("Exportar Lista de Clientes");
+        fileChooser.getExtensionFilters().add(
+                new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv")
+        );
+
+        java.io.File file = fileChooser.showSaveDialog(tableClient.getScene().getWindow());
+
+        if (file != null) {
+            try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                    new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+                writer.write("Nombre de Usuario,Nombre,Apellido,Nacionalidad,Email,Teléfono\n");
+                for (var client : clients) {
+                    writer.write(String.format("%s,%s,%s,%s,%s,%s\n",
+                            client.getName(),
+                            client.getLastName(),
+                            client.getNationality(),
+                            client.getEmail(),
+                            client.getPhone()
+                    ));
+                }
+            } catch (java.io.IOException e) {
+                Modal.displayError("Error al exportar la lista de clientes.");
+            }
+        }
+    }
+
+    public void handleExportToJSON() {
+        handleExportToJSON(
+                ClientDBProxy.getInstance().getAll(),
+                "Exportar Lista de Clientes",
+                tableClient.getScene().getWindow()
+        );
+    }
+
     public void handleEditClient() {
     }
 
     public void handleDeleteClient() {
-    }
-
-    public void handleExportClients() {
     }
 
     public static void navigateToClientListPage(Stage currentStage) {

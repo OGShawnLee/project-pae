@@ -36,7 +36,6 @@
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#handleEditManager" text="Editar"/>
               <Button mnemonicParsing="false" onMouseClicked="#handleDeleteManager" text="Eliminar"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleExportManagers" text="Exportar"/>
             </children>
           </HBox>
           <TableView fx:id="tableEmployee" prefHeight="592.0" prefWidth="950.0">
