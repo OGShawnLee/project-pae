@@ -37,6 +37,33 @@ public class Modal {
     }
   }
 
+  public static <T> void displayManageModal(String title, String resourceFileName, Runnable onClose, T dataObject) {
+    try {
+      FXMLLoader loader = new FXMLLoader(
+        Objects.requireNonNull(Modal.class.getResource("/" + resourceFileName + ".fxml"))
+      );
+
+      Parent root = loader.load();
+      Scene newScene = new Scene(root);
+      Stage modalStage = new Stage();
+
+      if (onClose != null) {
+        modalStage.setOnHidden(event -> onClose.run());
+      }
+
+      ManageController<T> controller = loader.getController();
+      controller.initialize(dataObject);
+
+      modalStage.setTitle(title);
+      modalStage.setScene(newScene);
+      modalStage.setResizable(false);
+      modalStage.initModality(Modality.APPLICATION_MODAL);
+      modalStage.showAndWait();
+    } catch (IOException e) {
+      displayError("No ha sido posible cargar el modal de gestión.");
+    }
+  }
+
   public static void displayError(String message) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Error");

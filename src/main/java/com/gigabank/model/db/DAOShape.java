@@ -1,5 +1,7 @@
 package com.gigabank.model.db;
 
+import com.gigabank.model.validation.InvalidFieldException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,6 +13,8 @@ public interface DAOShape<T, F> {
   ArrayList<T> getAll();
 
   T createOne(T entity) throws DuplicateRecordException, IOException;
+
+  void updateOne(T entity) throws NotFoundRecordException, IOException, InvalidFieldException;
 
   void deleteOne(F filter) throws IOException;
 }

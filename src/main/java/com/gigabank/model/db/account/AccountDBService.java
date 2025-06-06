@@ -24,7 +24,7 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
     AccountDTO instance = getDBStore().get(displayName);
 
     if (instance == null) {
-      throw new NotFoundRecordException("Account with display name '" + displayName + "' not found.");
+      throw new NotFoundRecordException("Cuenta con el nombre de usuario: '" + displayName + "' no ha sido encontrado.");
     }
 
     return instance;
@@ -36,9 +36,19 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
   }
 
   @Override
+  public void updateOne(AccountDTO accountDTO) throws NotFoundRecordException, IOException {
+    if (getDBStore().containsKey(accountDTO.getDisplayName())) {
+      getDBStore().put(accountDTO.getDisplayName(), accountDTO);
+      writeToFile();
+    } else {
+      throw new NotFoundRecordException("No ha sido posible actualizar la cuenta porque no ha sido encontrada.");
+    }
+  }
+
+  @Override
   public AccountDTO createOne(AccountDTO accountDTO) throws DuplicateRecordException, IOException {
     if (getDBStore().containsKey(accountDTO.getDisplayName())) {
-      throw new DuplicateRecordException("Account with this display name already exists.");
+      throw new DuplicateRecordException("Cuenta con el nombre de usuario introducido ya existe.");
     }
 
     getDBStore().put(accountDTO.getDisplayName(), accountDTO);

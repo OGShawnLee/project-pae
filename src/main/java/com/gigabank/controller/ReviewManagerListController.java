@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ReviewEmployeeListController extends Controller {
+public class ReviewManagerListController extends Controller {
   @FXML
   private TableView<EmployeeDTO> tableEmployee;
   @FXML
@@ -25,13 +25,12 @@ public class ReviewEmployeeListController extends Controller {
   private TableColumn<EmployeeDTO, String> columnAddress;
   @FXML
   private TableColumn<EmployeeDTO, String> columnBornAt;
-  @FXML
-  private TableColumn<EmployeeDTO, AccountDTO.Role> columnRole;
 
   @FXML
   private void initialize() {
     loadTableColumns();
-    loadEmployeeList();
+    loadManagerList();
+    loadRowDoubleClickHandler();
   }
 
   private void loadTableColumns() {
@@ -41,22 +40,40 @@ public class ReviewEmployeeListController extends Controller {
     columnWage.setCellValueFactory(new PropertyValueFactory<>("wage"));
     columnAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
     columnBornAt.setCellValueFactory(new PropertyValueFactory<>("bornAt"));
-    columnRole.setCellValueFactory(new PropertyValueFactory<>("role"));
   }
 
-  private void loadEmployeeList() {
+  private void loadManagerList() {
     tableEmployee.setItems(
       FXCollections.observableList(
-        EmployeeDBProxy.getInstance().getAll()
+        EmployeeDBProxy.getInstance().getAllByRole(AccountDTO.Role.MANAGER)
       )
     );
   }
 
-  public void handleOpenRegisterEmployee() {
-    Modal.display("Registrar Empleado", "RegisterEmployeeModal", this::loadEmployeeList);
+  private void loadRowDoubleClickHandler() {
+    setRowDoubleClickHandler(
+      tableEmployee,
+      (dataObject) -> {
+        Modal.displayManageModal(
+          "Administrar Gerente",
+          "ManageManagerModal",
+          this::reload,
+          dataObject
+        );
+        return null;
+      }
+    );
   }
 
-  public static void navigateToEmployeeListPage(Stage currentStage) {
-    navigateTo(currentStage, "Lista de Empleados", "ReviewEmployeeListPage");
+  private void reload() {
+    navigateFromThisPageTo("Lista de Gerentes", "ReviewManagerListPage");
+  }
+
+  public void handleOpenRegisterManager() {
+    Modal.display("Registrar Gerente", "RegisterManagerModal", this::loadManagerList);
+  }
+
+  public static void navigateToManagerListPage(Stage currentStage) {
+    navigateTo(currentStage, "Lista de Gerentes", "ReviewManagerListPage");
   }
 }

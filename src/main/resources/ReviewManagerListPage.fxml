@@ -13,12 +13,12 @@
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
             prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gigabank.controller.ReviewEmployeeListController">
+            fx:controller="com.gigabank.controller.ReviewManagerListController">
   <content>
     <AnchorPane fx:id="container" minHeight="-Infinity" prefHeight="720.0" prefWidth="1280.0">
       <VBox layoutX="172.0" prefHeight="720.0" prefWidth="950.0" spacing="16.0">
         <children>
-          <Label text="Lista de Empleados">
+          <Label text="Lista de Gerentes">
             <font>
               <Font size="24.0"/>
             </font>
@@ -26,19 +26,18 @@
           <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="32.0" VBox.vgrow="ALWAYS">
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterEmployee" text="Registrar Empleado"
+              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterManager" text="Registrar Gerente"
                       HBox.hgrow="ALWAYS"/>
             </children>
           </HBox>
           <TableView fx:id="tableEmployee" prefHeight="592.0" prefWidth="950.0">
             <columns>
-              <TableColumn fx:id="columnDisplayName" prefWidth="135.7" text="Usuario"/>
-              <TableColumn fx:id="columnName" prefWidth="135.7" text="Nombre"/>
-              <TableColumn fx:id="columnGender" prefWidth="135.7" text="Género"/>
-              <TableColumn fx:id="columnWage" prefWidth="105.7" text="Salario"/>
-              <TableColumn fx:id="columnAddress" prefWidth="165.7" text="Dirección"/>
-              <TableColumn fx:id="columnRole" prefWidth="135.7" text="Role"/>
-              <TableColumn fx:id="columnBornAt" prefWidth="135.7" text="Fecha de Nacimiento"/>
+              <TableColumn fx:id="columnDisplayName" prefWidth="160" text="Usuario"/>
+              <TableColumn fx:id="columnName" prefWidth="160" text="Nombre"/>
+              <TableColumn fx:id="columnGender" prefWidth="160" text="Género"/>
+              <TableColumn fx:id="columnWage" prefWidth="100" text="Salario"/>
+              <TableColumn fx:id="columnAddress" prefWidth="210" text="Dirección"/>
+              <TableColumn fx:id="columnBornAt" prefWidth="160" text="Fecha de Nacimiento"/>
             </columns>
           </TableView>
         </children>

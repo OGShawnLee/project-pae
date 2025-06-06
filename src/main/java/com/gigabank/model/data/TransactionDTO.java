@@ -1,5 +1,8 @@
 package com.gigabank.model.data;
 
+import com.gigabank.model.validation.InvalidFieldException;
+import com.gigabank.model.validation.Validator;
+
 import java.io.Serializable;
 
 public class TransactionDTO implements Serializable {
@@ -20,8 +23,8 @@ public class TransactionDTO implements Serializable {
     BankAccountDTO sourceAccount,
     BankAccountDTO destinationAccount,
     Type type,
-    double amount
-  ) {
+    String amount
+  ) throws InvalidFieldException {
     if (type == Type.TRANSFER) {
       if (sourceAccount == null || destinationAccount == null) {
         throw new IllegalArgumentException("Las cuentas de destino y origen deben ser definidas cuando la transacción sea una Transferencia.");
@@ -40,7 +43,7 @@ public class TransactionDTO implements Serializable {
     this.sourceAccount = sourceAccount;
     this.destinationAccount = destinationAccount;
     this.type = type;
-    this.amount = amount;
+    this.amount = Validator.getValidAmount(amount, "Monto de la Transacción");
   }
 
   public String getID() {

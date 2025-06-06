@@ -5,14 +5,18 @@ import com.gigabank.model.validation.Validator;
 
 public class EmployeeDTO extends Person {
   private final String displayName;
-  private final Gender gender;
-  private final float wage;
+  private Gender gender;
+  private float wage;
+  private final AccountDTO.Role role;
+  private BranchDTO branch;
 
   private EmployeeDTO(EmployeeBuilder builder) {
     super(builder);
     this.displayName = builder.displayName;
     this.gender = builder.gender;
     this.wage = builder.wage;
+    this.role = builder.role;
+    this.branch = builder.branch;
   }
 
   public String getDisplayName() {
@@ -23,8 +27,28 @@ public class EmployeeDTO extends Person {
     return gender;
   }
 
+  public void setGender(Gender gender) {
+    this.gender = gender;
+  }
+
   public float getWage() {
     return wage;
+  }
+
+  public void setWage(float wage) {
+    this.wage = wage;
+  }
+
+  public BranchDTO getBranch() {
+    return branch;
+  }
+
+  public void setBranch(BranchDTO branch) {
+    this.branch = branch;
+  }
+
+  public AccountDTO.Role getRole() {
+    return role;
   }
 
   @Override
@@ -45,9 +69,11 @@ public class EmployeeDTO extends Person {
     private String displayName;
     private Gender gender;
     private float wage;
+    private AccountDTO.Role role;
+    private BranchDTO branch;
 
     public EmployeeBuilder setDisplayName(String displayName) throws InvalidFieldException {
-      this.displayName = Validator.getValidName(displayName, 3, 32, "Username");
+      this.displayName = Validator.getValidName(displayName, 3, 32, "Nombre de Usuario");
       return this;
     }
 
@@ -58,6 +84,16 @@ public class EmployeeDTO extends Person {
 
     public EmployeeBuilder setWage(String wage) throws InvalidFieldException {
       this.wage = Validator.getValidWage(wage);
+      return this;
+    }
+
+    public EmployeeBuilder setRole(AccountDTO.Role role) {
+      this.role = role;
+      return this;
+    }
+
+    public EmployeeBuilder setBranch(BranchDTO branch) {
+      this.branch = branch;
       return this;
     }
 

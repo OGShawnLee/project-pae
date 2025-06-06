@@ -41,6 +41,11 @@ public class TransactionDBProxy implements TransactionDBServiceShape {
   }
 
   @Override
+  public void updateOne(TransactionDTO accountDTO) throws NotFoundRecordException, IOException {
+    getDBService().updateOne(accountDTO);
+  }
+
+  @Override
   public TransactionDTO createOne(TransactionDTO accountDTO) throws DuplicateRecordException, IOException {
     return getDBService().createOne(accountDTO);
   }

@@ -1,10 +1,12 @@
 package com.gigabank.controller;
 
 import com.gigabank.model.data.AccountDTO;
+import com.gigabank.model.data.BranchDTO;
 import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.data.Gender;
 import com.gigabank.model.db.DuplicateRecordException;
 import com.gigabank.model.db.account.AccountDBProxy;
+import com.gigabank.model.db.branch.BranchDBProxy;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
 import com.gigabank.model.validation.InvalidFieldException;
 import com.gigabank.model.validation.Validator;
@@ -14,7 +16,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class RegisterManagerController extends Controller {
   @FXML
@@ -26,13 +30,35 @@ public class RegisterManagerController extends Controller {
   @FXML
   private TextField displayNameField;
   @FXML
+  private ChoiceBox<BranchDTO> branchChoiceBox;
+  @FXML
   private ChoiceBox<Gender> genderChoiceBox;
   @FXML
   private TextField wageField;
 
   public void initialize() {
-    this.genderChoiceBox.getItems().setAll(Gender.values());
-    this.genderChoiceBox.setValue(Gender.MALE);
+    loadGenderChoiceBox(genderChoiceBox);
+    loadBranchChoiceBox(branchChoiceBox);
+  }
+
+  public static void loadGenderChoiceBox(ChoiceBox<Gender> genderChoiceBox) {
+    genderChoiceBox.getItems().setAll(Gender.values());
+    genderChoiceBox.setValue(Gender.MALE);
+  }
+
+  public static void loadBranchChoiceBox(ChoiceBox<BranchDTO> branchChoiceBox) {
+    ArrayList<BranchDTO> branches = BranchDBProxy.getInstance().getAll();
+    if (branches.isEmpty()) {
+      Modal.displayError("No existe una Sucursal registrada. Por favor, registre una Sucursal antes de registrar un Gerente.");
+      Modal.display(
+        "Registrar Sucursal",
+        "RegisterBranchModal",
+        () -> loadBranchChoiceBox(branchChoiceBox)
+      );
+    } else {
+      branchChoiceBox.getItems().setAll(branches);
+      branchChoiceBox.setValue(branches.getFirst());
+    }
   }
 
   @FXML
@@ -62,11 +88,13 @@ public class RegisterManagerController extends Controller {
       );
       EmployeeDTO employeeDTO = new EmployeeDTO.EmployeeBuilder()
         .setAddress(addressField.getText())
-        .setBornAt(bornAtDatePicker.getValue().atStartOfDay())
+        .setBornAt(bornAtDatePicker.getValue())
         .setGender(genderChoiceBox.getValue())
         .setName(nameField.getText())
+        .setBranch(branchChoiceBox.getValue())
         .setDisplayName(displayName)
         .setWage(wageField.getText())
+        .setRole(AccountDTO.Role.MANAGER)
         .build();
 
       AccountDBProxy.getInstance().createOne(accountDTO);

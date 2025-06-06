@@ -39,14 +39,14 @@
         </HBox>
         <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
           <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerentes" />
+            <Button onAction="#navigateToReviewManagerListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerentes" />
             <Button onAction="#handleOpenRegisterManager" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Gerente" />
           </children>
         </HBox>
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Empleados" />
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Clientes" />
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Transacciones" />
+        <Button onAction="#navigateToReviewEmployeeListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Empleados" />
+        <Button onAction="#navigateToReviewClientListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Clientes" />
+        <Button onAction="#navigateToReviewBankAccountListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
+        <Button onAction="#navigateToReviewTransactionListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Transacciones" />
       </children>
     </VBox>
   </children>

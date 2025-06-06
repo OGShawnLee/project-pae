@@ -29,4 +29,24 @@ public class LandingAdministratorController extends Controller {
   public void navigateToReviewBranchListPage() {
     ReviewBranchListController.navigateToBranchListPage(getScene());
   }
+
+  public void navigateToReviewManagerListPage() {
+    ReviewManagerListController.navigateToManagerListPage(getScene());
+  }
+
+  public void navigateToReviewEmployeeListPage() {
+    ReviewEmployeeListController.navigateToEmployeeListPage(getScene());
+  }
+
+  public void navigateToReviewClientListPage() {
+    ReviewClientListController.navigateToClientListPage(getScene());
+  }
+
+  public void navigateToReviewBankAccountListPage() {
+    ReviewBankAccountListController.navigateToBankAccountListPage(getScene());
+  }
+
+  public void navigateToReviewTransactionListPage() {
+    ReviewTransactionListController.navigateToTransactionListPage(getScene());
+  }
 }
