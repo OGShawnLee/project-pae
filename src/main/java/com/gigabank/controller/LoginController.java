@@ -23,7 +23,7 @@ public class LoginController extends Controller {
   public void initialize() {
     if (AccountDBProxy.getInstance().hasAdminAccount()) return;
 
-    Modal.displayInfo("Welcome to GigaBank! Please createOne an Admin Account to get stated.");
+    Modal.displayInfo("Bienvenido a GigaBank. Cree una Cuenta de Administrador para comenzar.");
   }
 
   public void handleAdminAccount() throws InvalidFieldException, DuplicateRecordException, IOException {
@@ -38,8 +38,8 @@ public class LoginController extends Controller {
     displayNameField.clear();
     passwordField.clear();
 
-    Modal.displaySuccess("Admin Account created successfully. Welcome " + dataObject.getDisplayName() + " to GigaBank!");
-    Modal.displaySuccess("Please login to continue.");
+    Modal.displaySuccess("¡Cuenta de Administrador creada. Bienvenido, " + dataObject.getDisplayName() + " a GigaBank!");
+    Modal.displaySuccess("Por favor utilize las credenciales de su Cuenta recien creada para iniciar sesión.");
   }
 
   public void handleLoginAccount() throws InvalidFieldException, NotFoundRecordException {
@@ -51,7 +51,7 @@ public class LoginController extends Controller {
       AuthClient.getInstance().setCurrentUser(dataObject);
       navigateToLandingPage();
     } else {
-      Modal.displayError("Invalid credentials. Please try again.");
+      Modal.displayError("Las credenciales son invalidas. Por favor intente de nuevo.");
     }
   }
 
