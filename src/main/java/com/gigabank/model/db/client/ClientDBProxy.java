@@ -26,13 +26,13 @@ public class ClientDBProxy implements ClientDBServiceShape {
   }
 
   @Override
-  public ClientDTO findOne(String displayName) {
-    return getDBService().findOne(displayName);
+  public ClientDTO findOne(String email) {
+    return getDBService().findOne(email);
   }
 
   @Override
-  public ClientDTO getOne(String displayName) throws NotFoundRecordException {
-    return getDBService().getOne(displayName);
+  public ClientDTO getOne(String email) throws NotFoundRecordException {
+    return getDBService().getOne(email);
   }
 
   @Override
@@ -41,17 +41,17 @@ public class ClientDBProxy implements ClientDBServiceShape {
   }
 
   @Override
-  public void updateOne(ClientDTO accountDTO) throws NotFoundRecordException, IOException {
-    getDBService().updateOne(accountDTO);
+  public void updateOne(ClientDTO clientDTO) throws NotFoundRecordException, IOException {
+    getDBService().updateOne(clientDTO);
   }
 
   @Override
-  public ClientDTO createOne(ClientDTO accountDTO) throws DuplicateRecordException, IOException {
-    return getDBService().createOne(accountDTO);
+  public ClientDTO createOne(ClientDTO clientDTO) throws DuplicateRecordException, IOException {
+    return getDBService().createOne(clientDTO);
   }
 
   @Override
-  public void deleteOne(String displayName) throws IOException {
-    getDBService().deleteOne(displayName);
+  public void deleteOne(String email) throws IOException {
+    getDBService().deleteOne(email);
   }
 }
