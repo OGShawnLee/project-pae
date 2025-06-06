@@ -62,7 +62,7 @@ public class ManageManagerController extends ManageController<EmployeeDTO> {
           .build()
       );
 
-      Modal.displaySuccess("El gerente ha sido actualizado con éxito.");
+      Modal.displaySuccess("El Gerente ha sido actualizado con éxito.");
     } catch (InvalidFieldException | NotFoundRecordException | IOException e) {
       Modal.displayError(e.getMessage());
     }

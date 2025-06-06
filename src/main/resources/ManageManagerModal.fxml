@@ -16,7 +16,7 @@
   <children>
     <VBox layoutX="200.0" layoutY="109.0" prefWidth="320.0" spacing="16.0">
       <children>
-        <Label styleClass="title" text="Gestionar Manager">
+        <Label styleClass="title" text="Gestionar Gerente">
           <VBox.margin>
             <Insets/>
           </VBox.margin>
@@ -27,14 +27,14 @@
         <VBox spacing="8.0">
           <children>
             <Label styleClass="label" text="Nombre de Usuario"/>
-            <TextField fx:id="displayNameField" promptText="Introduzca el Nombre de Usuario del Manager"
+            <TextField fx:id="displayNameField" promptText="Introduzca el Nombre de Usuario del Gerente"
                        styleClass="input" disable="true" editable="false" />
           </children>
         </VBox>
         <VBox spacing="8.0">
           <children>
             <Label styleClass="label" text="Nombre Completo"/>
-            <TextField fx:id="nameField" promptText="Introduzca el Nombre Completo del Manager" styleClass="input"/>
+            <TextField fx:id="nameField" promptText="Introduzca el Nombre Completo del Gerente" styleClass="input"/>
           </children>
         </VBox>
         <VBox spacing="8.0">
@@ -46,20 +46,20 @@
         <VBox spacing="8.0">
           <children>
             <Label styleClass="label" text="Salario"/>
-            <TextField fx:id="wageField" promptText="Introduzca el Salario del Manager" styleClass="input"/>
+            <TextField fx:id="wageField" promptText="Introduzca el Salario del Gerente" styleClass="input"/>
           </children>
         </VBox>
         <VBox spacing="8.0">
           <children>
             <Label styleClass="label" text="Dirección"/>
-            <TextField fx:id="addressField" promptText="Introduzca la Dirección del Manager" styleClass="input"/>
+            <TextField fx:id="addressField" promptText="Introduzca la Dirección del Gerente" styleClass="input"/>
           </children>
         </VBox>
         <VBox spacing="8.0">
           <children>
             <Label styleClass="label" text="Fecha de Nacimiento"/>
             <DatePicker fx:id="bornAtDatePicker" maxWidth="1.7976931348623157E308"
-                        promptText="Introduzca la Fecha de Nacimiento del Manager" styleClass="input"/>
+                        promptText="Introduzca la Fecha de Nacimiento del Gerente" styleClass="input"/>
           </children>
         </VBox>
         <VBox spacing="8.0">
@@ -71,7 +71,7 @@
         <HBox>
           <children>
             <Button mnemonicParsing="false" onAction="#handleManage" prefWidth="320.0" styleClass="button"
-                    text="Actualizar "/>
+                    text="Actualizar Gerente"/>
           </children>
         </HBox>
       </children>
