@@ -68,7 +68,7 @@ public class RegisterManagerController extends Controller {
 
       if (duplicateAccount != null) {
         throw new DuplicateRecordException(
-          "An account with this display name already exists. Please choose a different display name."
+          "Una Cuenta existe con este nombre de usuario. Por favor, elija un nombre de usuario diferente."
         );
       }
 
@@ -76,7 +76,7 @@ public class RegisterManagerController extends Controller {
 
       if (duplicateEmployee != null) {
         throw new DuplicateRecordException(
-          "An employee with this display name already exists. Please choose a different display name."
+          "Un Empleado existe con este nombre de usuario. Por favor, elija un nombre de usuario diferente."
         );
       }
 
@@ -99,7 +99,7 @@ public class RegisterManagerController extends Controller {
       AccountDBProxy.getInstance().createOne(accountDTO);
       EmployeeDBProxy.getInstance().createOne(employeeDTO);
 
-      Modal.displaySuccess("Manager created successfully.");
+      Modal.displaySuccess("El Gerente ha sido registrado exitosamente.");
     } catch (InvalidFieldException | DuplicateRecordException | IOException e) {
       Modal.displayError(e.getMessage());
     }

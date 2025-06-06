@@ -39,7 +39,7 @@
         </VBox>
         <VBox spacing="8.0">
           <children>
-            <Label styleClass="label" text="Surcursal"/>
+            <Label styleClass="label" text="Sucursal"/>
             <ChoiceBox fx:id="branchChoiceBox" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="input"/>
           </children>
         </VBox>
