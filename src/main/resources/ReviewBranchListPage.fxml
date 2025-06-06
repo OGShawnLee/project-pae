@@ -35,7 +35,6 @@
           <HBox alignment="CENTER_LEFT" spacing="16.0">
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#handleEditBranch" text="Editar"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleDeleteBranch" text="Eliminar"/>
             </children>
           </HBox>
           <TableView fx:id="tableBranch" prefHeight="592.0" prefWidth="950.0">

@@ -31,12 +31,6 @@
               <Button mnemonicParsing="false" onMouseClicked="#handleExportToJSON" text="Exportar Lista a JSON"/>
             </children>
           </HBox>
-          <HBox alignment="CENTER_LEFT" spacing="16.0">
-            <children>
-              <Button mnemonicParsing="false" onMouseClicked="#handleEditTransaction" text="Editar"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleDeleteTransaction" text="Eliminar"/>
-            </children>
-          </HBox>
           <TableView fx:id="tableTransaction" prefHeight="592.0" prefWidth="950.0">
             <columns>
               <TableColumn fx:id="columnID" prefWidth="120.0" text="ID"/>

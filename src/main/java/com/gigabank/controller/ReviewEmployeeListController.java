@@ -113,9 +113,6 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
     Modal.displayManageModal("Gestionar Empleado", "ManageEmployeeModal", this::loadEmployeeList, selected);
   }
 
-  public void handleDeleteEmployee() {
-  }
-
   public static void navigateToEmployeeListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Empleados", "ReviewEmployeeListPage");
   }

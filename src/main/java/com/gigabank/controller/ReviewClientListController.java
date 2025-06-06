@@ -91,12 +91,6 @@ public class ReviewClientListController extends Controller implements FileExport
     );
   }
 
-  public void handleEditClient() {
-  }
-
-  public void handleDeleteClient() {
-  }
-
   public static void navigateToClientListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Clientes", "ReviewClientListPage");
   }

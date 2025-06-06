@@ -108,11 +108,17 @@ public class ReviewBranchListController extends Controller implements FileExport
   }
 
   public void handleEditBranch() {
-    // Lógica para editar empleado
-  }
-
-  public void handleDeleteBranch() {
-    // Lógica para eliminar empleado
+    BranchDTO selectedBranch = tableBranch.getSelectionModel().getSelectedItem();
+    if (selectedBranch == null) {
+      Modal.displayError("Por favor, selecciona una sucursal para editar.");
+      return;
+    }
+    Modal.displayManageModal(
+            "Administrar Sucursal",
+            "ManageBranchModal",
+            this::reload,
+            selectedBranch
+    );
   }
 
   public static void navigateToBranchListPage(Stage currentStage) {
