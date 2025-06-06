@@ -93,12 +93,6 @@ public class ReviewBankAccountListController extends Controller implements FileE
     Modal.display("Registrar Cuenta", "RegisterBankAccountModal", this::loadBankAccountList);
   }
 
-  public void handleEditBankAccount() {
-  }
-
-  public void handleDeleteBankAccount() {
-  }
-
   public static void navigateToBankAccountListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Cuentas Bancarias", "ReviewBankAccountListPage");
   }

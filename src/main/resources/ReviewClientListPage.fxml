@@ -30,12 +30,6 @@
                       HBox.hgrow="ALWAYS"/>
             </children>
           </HBox>
-          <HBox alignment="CENTER_LEFT" spacing="16.0">
-            <children>
-              <Button mnemonicParsing="false" onMouseClicked="#handleEditClient" text="Editar"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleDeleteClient" text="Eliminar"/>
-            </children>
-          </HBox>
           <TableView fx:id="tableClient" prefHeight="592.0" prefWidth="950.0">
             <columns>
               <TableColumn fx:id="columnName" prefWidth="150.0" text="Nombre"/>

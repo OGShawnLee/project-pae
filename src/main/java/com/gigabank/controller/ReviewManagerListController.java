@@ -129,9 +129,6 @@ public class ReviewManagerListController extends Controller implements FileExpor
     Modal.displayManageModal("Gestionar Gerente", "ManageManagerModal", this::loadManagerList, selected);
   }
 
-  public void handleDeleteManager() {
-  }
-
   public static void navigateToManagerListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Gerentes", "ReviewManagerListPage");
   }

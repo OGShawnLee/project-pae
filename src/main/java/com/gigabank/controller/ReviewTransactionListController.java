@@ -90,14 +90,6 @@ public class ReviewTransactionListController extends Controller implements FileE
     Modal.display("Registrar Transacción", "RegisterTransactionModal", this::loadTransactionList);
   }
 
-  public void handleEditTransaction() {
-
-  }
-
-  public void handleDeleteTransaction() {
-
-  }
-
   public static void navigateToTransactionListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Transacciones", "ReviewTransactionListPage");
   }
