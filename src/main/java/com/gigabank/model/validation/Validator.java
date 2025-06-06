@@ -8,7 +8,7 @@ public class Validator {
   private static final String NAME_REGEX_SPANISH = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\\s]+$";
   private static final String PHONE_REGEX = "^[0-9]{8}$";
   private static final String RFC_REGEX = "^[A-Z]{3,4}[0-9]{6}[A-Z0-9]{3}$";
-  private static final String DISPLAY_NAME_REGEX = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$";
+  private static final String DISPLAY_NAME_REGEX = "^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\\s]+$";
 
   private static boolean isValidCURP(String curp) {
     String trimmed = curp != null ? curp.trim() : null;
@@ -114,7 +114,7 @@ public class Validator {
   }
 
   public static String getValidPhone(String phone) throws InvalidFieldException {
-    if (isValidString(phone, 10, 10, PHONE_REGEX)) {
+    if (isValidString(phone, 8, 8, PHONE_REGEX)) {
       return phone.trim();
     }
 
