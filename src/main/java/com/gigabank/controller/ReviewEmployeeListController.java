@@ -1,5 +1,6 @@
 package com.gigabank.controller;
 
+import com.gigabank.model.AuthClient;
 import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
@@ -59,24 +60,24 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
     javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
     fileChooser.setTitle("Exportar Lista de Empleados");
     fileChooser.getExtensionFilters().add(
-            new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv")
+      new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv")
     );
 
     java.io.File file = fileChooser.showSaveDialog(tableEmployee.getScene().getWindow());
 
     if (file != null) {
       try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
-              new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+        new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
         writer.write("Nombre de Usuario,Nombre,Género,Sueldo,Dirección,Fecha de Nacimiento,Rol\n");
         for (var emp : employees) {
           writer.write(String.format("%s,%s,%s,%.2f,%s,%s,%s\n",
-                  emp.getDisplayName(),
-                  emp.getName(),
-                  emp.getGender(),
-                  emp.getWage(),
-                  emp.getAddress(),
-                  emp.getBornAt().toString(),
-                  emp.getRole() != null ? emp.getRole().name() : "-"
+            emp.getDisplayName(),
+            emp.getName(),
+            emp.getGender(),
+            emp.getWage(),
+            emp.getAddress(),
+            emp.getBornAt().toString(),
+            emp.getRole() != null ? emp.getRole().name() : "-"
           ));
         }
       } catch (java.io.IOException e) {
@@ -87,9 +88,9 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
 
   public void handleExportToJSON() {
     handleExportToJSON(
-            EmployeeDBProxy.getInstance().getAll(),
-            "Exportar Lista de Empleados",
-            tableEmployee.getScene().getWindow()
+      EmployeeDBProxy.getInstance().getAll(),
+      "Exportar Lista de Empleados",
+      tableEmployee.getScene().getWindow()
     );
   }
 
@@ -99,10 +100,16 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
 
   public void handleEditEmployee() {
     EmployeeDTO selected = tableEmployee.getSelectionModel().getSelectedItem();
+
     if (selected == null) {
       Modal.displayError("Seleccione un empleado para editar.");
       return;
     }
+
+    if (selected.getDisplayName().equals(AuthClient.getInstance().getCurrentUser().getDisplayName())) {
+      return;
+    }
+
     Modal.displayManageModal("Gestionar Empleado", "ManageEmployeeModal", this::loadEmployeeList, selected);
   }
 
