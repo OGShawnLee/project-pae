@@ -39,7 +39,7 @@ class BranchDBService extends DBService<HashMap<String, BranchDTO>> implements B
   @Override
   public void updateOne(BranchDTO branchDTO) throws NotFoundRecordException, IOException, InvalidFieldException {
     if (getDBStore().containsKey(branchDTO.getEmail())) {
-      BranchDTO initial =  getDBStore().get(branchDTO.getEmail());
+      BranchDTO initial = getDBStore().get(branchDTO.getEmail());
 
       initial.setName(branchDTO.getName());
       initial.setAddress(branchDTO.getAddress());
