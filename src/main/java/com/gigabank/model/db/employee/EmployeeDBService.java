@@ -61,6 +61,7 @@ class EmployeeDBService extends DBService<HashMap<String, EmployeeDTO>> implemen
       initial.setBranch(employeeDTO.getBranch());
       initial.setGender(employeeDTO.getGender());
       initial.setWage(employeeDTO.getWage());
+      initial.setRole(employeeDTO.getRole());
 
       writeToFile();
     } else {
