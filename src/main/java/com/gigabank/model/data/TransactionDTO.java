@@ -27,15 +27,15 @@ public class TransactionDTO implements Serializable {
   ) throws InvalidFieldException {
     if (type == Type.TRANSFER) {
       if (sourceAccount == null || destinationAccount == null) {
-        throw new IllegalArgumentException("Las cuentas de destino y origen deben ser definidas cuando la transacción sea una Transferencia.");
+        throw new InvalidFieldException("Las cuentas de destino y origen deben ser definidas cuando la transacción sea una Transferencia.");
       }
 
       if (sourceAccount.equals(destinationAccount)) {
-        throw new IllegalArgumentException("Las cuentas deben ser distintas para una Transferencia.");
+        throw new InvalidFieldException("Las cuentas deben ser distintas para una Transferencia.");
       }
     } else if (type == Type.DEPOSIT || type == Type.WITHDRAW) {
       if (sourceAccount == null) {
-        throw new IllegalArgumentException("La cuenta de origen debe estar definida.");
+        throw new InvalidFieldException("La cuenta de origen debe estar definida.");
       }
     }
 

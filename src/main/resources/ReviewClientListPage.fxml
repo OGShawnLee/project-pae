@@ -11,44 +11,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gigabank.controller.ReviewClientListController">
-    <content>
-        <AnchorPane fx:id="container" minHeight="-Infinity" prefHeight="720.0" prefWidth="1280.0">
-            <VBox layoutX="172.0" prefHeight="720.0" prefWidth="950.0" spacing="16.0">
-                <children>
-                    <Label text="Lista de Clientes">
-                        <font>
-                            <Font size="24.0"/>
-                        </font>
-                    </Label>
-                    <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="32.0" VBox.vgrow="ALWAYS">
-                        <children>
-                            <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
-                            <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterClient" text="Registrar Cliente" HBox.hgrow="ALWAYS"/>
-                        </children>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="16.0">
-                        <children>
-                            <Button mnemonicParsing="false" onMouseClicked="#handleEditClient" text="Editar" />
-                            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteClient" text="Eliminar" />
-                            <Button mnemonicParsing="false" onMouseClicked="#handleExportClients" text="Exportar" />
-                        </children>
-                    </HBox>
-                    <TableView fx:id="tableClient" prefHeight="592.0" prefWidth="950.0">
-                        <columns>
-                            <TableColumn fx:id="columnDisplayName" prefWidth="150.0" text="Usuario"/>
-                            <TableColumn fx:id="columnName" prefWidth="150.0" text="Nombre"/>
-                            <TableColumn fx:id="columnLastName" prefWidth="150.0" text="Apellido"/>
-                            <TableColumn fx:id="columnNationality" prefWidth="150.0" text="Nacionalidad"/>
-                            <TableColumn fx:id="columnEmail" prefWidth="175.0" text="Correo Electrónico"/>
-                            <TableColumn fx:id="columnPhone" prefWidth="175.0" text="Teléfono"/>
-                        </columns>
-                    </TableView>
-                </children>
-                <padding>
-                    <Insets bottom="32.0" top="32.0"/>
-                </padding>
-            </VBox>
-        </AnchorPane>
-    </content>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gigabank.controller.ReviewClientListController">
+  <content>
+    <AnchorPane fx:id="container" minHeight="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+      <VBox layoutX="172.0" prefHeight="720.0" prefWidth="950.0" spacing="16.0">
+        <children>
+          <Label text="Lista de Clientes">
+            <font>
+              <Font size="24.0"/>
+            </font>
+          </Label>
+          <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="32.0" VBox.vgrow="ALWAYS">
+            <children>
+              <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterClient" text="Registrar Cliente"
+                      HBox.hgrow="ALWAYS"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="16.0">
+            <children>
+              <Button mnemonicParsing="false" onMouseClicked="#handleEditClient" text="Editar"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleDeleteClient" text="Eliminar"/>
+            </children>
+          </HBox>
+          <TableView fx:id="tableClient" prefHeight="592.0" prefWidth="950.0">
+            <columns>
+              <TableColumn fx:id="columnName" prefWidth="150.0" text="Nombre"/>
+              <TableColumn fx:id="columnLastName" prefWidth="150.0" text="Apellido"/>
+              <TableColumn fx:id="columnAddress" prefWidth="150.0" text="Dirección"/>
+              <TableColumn fx:id="columnNationality" prefWidth="150.0" text="Nacionalidad"/>
+              <TableColumn fx:id="columnEmail" prefWidth="175.0" text="Correo Electrónico"/>
+              <TableColumn fx:id="columnPhone" prefWidth="175.0" text="Teléfono"/>
+            </columns>
+          </TableView>
+        </children>
+        <padding>
+          <Insets bottom="32.0" top="32.0"/>
+        </padding>
+      </VBox>
+    </AnchorPane>
+  </content>
 </ScrollPane>
