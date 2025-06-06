@@ -130,7 +130,6 @@ public class ReviewManagerListController extends Controller implements FileExpor
   }
 
   public void handleDeleteManager() {
-    // Lógica para eliminar empleado
   }
 
   public static void navigateToManagerListPage(Stage currentStage) {

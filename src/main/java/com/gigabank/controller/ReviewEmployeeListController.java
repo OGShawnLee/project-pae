@@ -114,7 +114,6 @@ public class ReviewEmployeeListController extends Controller implements FileExpo
   }
 
   public void handleDeleteEmployee() {
-    // Lógica para eliminar empleado
   }
 
   public static void navigateToEmployeeListPage(Stage currentStage) {
