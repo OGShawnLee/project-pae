@@ -10,8 +10,8 @@ public class AccountDTO implements Serializable {
     ADMIN, MANAGER, EXECUTIVE, TELLER
   }
 
-  private String displayName;
-  private String password;
+  private final String displayName;
+  private final String password;
   private Role role;
 
   public AccountDTO(String displayName, String password, Role role) throws InvalidFieldException {
@@ -26,6 +26,14 @@ public class AccountDTO implements Serializable {
 
   public Role getRole() {
     return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
+  public AccountDTO update(Role role) throws InvalidFieldException {
+    return new AccountDTO(displayName, password, role);
   }
 
   public boolean hasPasswordMatch(String candidate) {

@@ -38,7 +38,10 @@ class AccountDBService extends DBService<HashMap<String, AccountDTO>> implements
   @Override
   public void updateOne(AccountDTO accountDTO) throws NotFoundRecordException, IOException {
     if (getDBStore().containsKey(accountDTO.getDisplayName())) {
-      getDBStore().put(accountDTO.getDisplayName(), accountDTO);
+      AccountDTO initial = getOne(accountDTO.getDisplayName());
+
+      initial.setRole(accountDTO.getRole());
+
       writeToFile();
     } else {
       throw new NotFoundRecordException("No ha sido posible actualizar la cuenta porque no ha sido encontrada.");

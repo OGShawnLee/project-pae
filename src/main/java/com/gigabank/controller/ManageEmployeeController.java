@@ -5,6 +5,7 @@ import com.gigabank.model.data.BranchDTO;
 import com.gigabank.model.data.EmployeeDTO;
 import com.gigabank.model.data.Gender;
 import com.gigabank.model.db.NotFoundRecordException;
+import com.gigabank.model.db.account.AccountDBProxy;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
 import com.gigabank.model.validation.InvalidFieldException;
 
@@ -55,6 +56,15 @@ public class ManageEmployeeController extends ManageController<EmployeeDTO> {
   @FXML
   protected void handleManage() {
     try {
+      if (getCurrentDataObject().getRole() != roleChoiceBox.getValue()) {
+        AccountDTO accountDTO = AccountDBProxy
+          .getInstance()
+          .getOne(getCurrentDataObject().getDisplayName());
+        AccountDBProxy.getInstance().updateOne(
+          accountDTO.update(roleChoiceBox.getValue())
+        );
+      }
+
       EmployeeDBProxy.getInstance().updateOne(
         new EmployeeDTO.EmployeeBuilder()
           .setName(nameField.getText())

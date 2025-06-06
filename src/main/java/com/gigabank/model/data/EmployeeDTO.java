@@ -7,7 +7,7 @@ public class EmployeeDTO extends Person {
   private final String displayName;
   private Gender gender;
   private float wage;
-  private final AccountDTO.Role role;
+  private AccountDTO.Role role;
   private BranchDTO branch;
 
   private EmployeeDTO(EmployeeBuilder builder) {
@@ -49,6 +49,10 @@ public class EmployeeDTO extends Person {
 
   public AccountDTO.Role getRole() {
     return role;
+  }
+
+  public void setRole(AccountDTO.Role role) {
+    this.role = role;
   }
 
   @Override
