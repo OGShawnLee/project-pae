@@ -73,6 +73,18 @@ public class ReviewManagerListController extends Controller {
     Modal.display("Registrar Gerente", "RegisterManagerModal", this::loadManagerList);
   }
 
+  public void handleEditManager() {
+    // Lógica para editar empleado
+  }
+
+  public void handleDeleteManager() {
+    // Lógica para eliminar empleado
+  }
+
+  public void handleExportManagers() {
+    // Lógica para exportar empleados
+  }
+
   public static void navigateToManagerListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Gerentes", "ReviewManagerListPage");
   }

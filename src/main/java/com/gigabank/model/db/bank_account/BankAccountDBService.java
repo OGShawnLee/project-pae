@@ -36,7 +36,6 @@ class BankAccountDBService extends DBService<HashMap<String, BankAccountDTO>> im
     return new ArrayList<>(getDBStore().values());
   }
 
-  @Override
   public ArrayList<BankAccountDTO> getAllByBranch(BranchDTO branch) {
     ArrayList<BankAccountDTO> accounts = new ArrayList<>();
 

@@ -27,6 +27,13 @@
                             <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterBankAccount" text="Registrar Cuenta" HBox.hgrow="ALWAYS"/>
                         </children>
                     </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0">
+                        <children>
+                            <Button mnemonicParsing="false" onMouseClicked="#handleEditBankAccount" text="Editar"/>
+                            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteBankAccount" text="Eliminar"/>
+                            <Button mnemonicParsing="false" onMouseClicked="#handleExportBankAccounts" text="Exportar"/>
+                        </children>
+                    </HBox>
                     <TableView fx:id="tableBankAccount" prefHeight="592.0" prefWidth="950.0">
                         <columns>
                             <TableColumn fx:id="columnId" prefWidth="120.0" text="ID"/>

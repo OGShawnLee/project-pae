@@ -42,6 +42,17 @@ public class ReviewTransactionListController extends Controller {
         tableTransaction.setItems(FXCollections.observableList(TransactionDBProxy.getInstance().getAll()));
     }
 
+    public void handleEditTransaction() {
+
+    }
+
+    public void handleDeleteTransaction() {
+
+    }
+
+    public void handleExportTransactions() {
+    }
+
     public static void navigateToTransactionListPage(Stage currentStage) {
         navigateTo(currentStage, "Lista de Transacciones", "ReviewTransactionListPage");
     }

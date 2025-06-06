@@ -26,6 +26,13 @@
                             <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
                         </children>
                     </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0">
+                        <children>
+                            <Button mnemonicParsing="false" onMouseClicked="#handleEditTransaction" text="Editar" />
+                            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteTransaction" text="Eliminar" />
+                            <Button mnemonicParsing="false" onMouseClicked="#handleExportTransactions" text="Exportar" />
+                        </children>
+                    </HBox>
                     <TableView fx:id="tableTransaction" prefHeight="592.0" prefWidth="950.0">
                         <columns>
                             <TableColumn fx:id="columnId" prefWidth="120.0" text="ID"/>
