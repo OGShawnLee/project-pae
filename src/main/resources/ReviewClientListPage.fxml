@@ -31,7 +31,6 @@
                         <children>
                             <Button mnemonicParsing="false" onMouseClicked="#handleEditClient" text="Editar" />
                             <Button mnemonicParsing="false" onMouseClicked="#handleDeleteClient" text="Eliminar" />
-                            <Button mnemonicParsing="false" onMouseClicked="#handleExportClients" text="Exportar" />
                         </children>
                     </HBox>
                     <TableView fx:id="tableClient" prefHeight="592.0" prefWidth="950.0">
