@@ -31,22 +31,12 @@
     </VBox>
     <VBox layoutX="480.0" layoutY="200.0" prefWidth="320.0" spacing="16.0">
       <children>
-        <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
-          <children>
-            <Button onAction="#navigateToReviewBranchListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Sucursales" />
-            <Button onAction="#handleOpenRegisterBranch" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Sucursal" />
-          </children>
-        </HBox>
-        <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
-          <children>
-            <Button onAction="#navigateToReviewManagerListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Gerentes" />
-            <Button onAction="#handleOpenRegisterManager" mnemonicParsing="false" prefWidth="160.0" styleClass="button" text="Registrar Gerente" />
-          </children>
-        </HBox>
-        <Button onAction="#navigateToReviewEmployeeListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Empleados" />
-        <Button onAction="#navigateToReviewClientListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Clientes" />
-        <Button onAction="#navigateToReviewBankAccountListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
-        <Button onAction="#navigateToReviewTransactionListPage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button" text="Transacciones" />
+        <Button onAction="#navigateToReviewBranchListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Sucursales" />
+        <Button onAction="#navigateToReviewManagerListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Gerentes" />
+        <Button onAction="#navigateToReviewEmployeeListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Empleados" />
+        <Button onAction="#navigateToReviewClientListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Clientes" />
+        <Button onAction="#navigateToReviewBankAccountListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Cuentas Bancarias" />
+        <Button onAction="#navigateToReviewTransactionListPage" prefWidth="320.0" mnemonicParsing="false" styleClass="button" text="Transacciones" />
       </children>
     </VBox>
   </children>
