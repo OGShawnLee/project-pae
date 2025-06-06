@@ -114,7 +114,7 @@ public class Validator {
   }
 
   public static String getValidPhone(String phone) throws InvalidFieldException {
-    if (isValidString(phone, 8, 8, PHONE_REGEX)) {
+    if (isValidString(phone, 10, 10, PHONE_REGEX)) {
       return phone.trim();
     }
 
