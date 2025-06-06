@@ -67,6 +67,18 @@ public class ReviewBranchListController extends Controller {
     Modal.display("Registrar Sucursal", "RegisterBranchModal", this::loadBranchList);
   }
 
+  public void handleEditBranch() {
+    // Lógica para editar empleado
+  }
+
+  public void handleDeleteBranch() {
+    // Lógica para eliminar empleado
+  }
+
+  public void handleExportBranches() {
+    // Lógica para exportar empleados
+  }
+
   public static void navigateToBranchListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Sucursales", "ReviewBranchListPage");
   }

@@ -56,6 +56,18 @@ public class ReviewEmployeeListController extends Controller {
     Modal.display("Registrar Empleado", "RegisterEmployeeModal", this::loadEmployeeList);
   }
 
+  public void handleEditEmployee() {
+    // Lógica para editar empleado
+  }
+
+  public void handleDeleteEmployee() {
+    // Lógica para eliminar empleado
+  }
+
+  public void handleExportEmployees() {
+    // Lógica para exportar empleados
+  }
+
   public static void navigateToEmployeeListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Empleados", "ReviewEmployeeListPage");
   }

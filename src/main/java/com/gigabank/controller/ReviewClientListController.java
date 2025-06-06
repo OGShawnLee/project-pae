@@ -52,6 +52,15 @@ public class ReviewClientListController extends Controller {
         Modal.display("Registrar Cliente", "RegisterClientModal", this::loadClientList);
     }
 
+    public void handleEditClient() {
+    }
+
+    public void handleDeleteClient() {
+    }
+
+    public void handleExportClients() {
+    }
+
     public static void navigateToClientListPage(Stage currentStage) {
         navigateTo(currentStage, "Lista de Clientes", "ReviewClientListPage");
     }
