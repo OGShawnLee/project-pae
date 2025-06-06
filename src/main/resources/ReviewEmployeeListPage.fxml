@@ -26,15 +26,15 @@
           <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="32.0" VBox.vgrow="ALWAYS">
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
-              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterEmployee" text="Registrar Empleado"
-                      HBox.hgrow="ALWAYS"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterEmployee" text="Registrar Empleado" HBox.hgrow="ALWAYS"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToCSV" text="Exportar Lista a CSV"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToJSON" text="Exportar Lista a JSON"/>
             </children>
           </HBox>
           <HBox alignment="CENTER_LEFT" spacing="16.0">
             <children>
               <Button mnemonicParsing="false" onMouseClicked="#handleEditEmployee" text="Editar" />
               <Button mnemonicParsing="false" onMouseClicked="#handleDeleteEmployee" text="Eliminar" />
-              <Button mnemonicParsing="false" onMouseClicked="#handleExportEmployees" text="Exportar" />
             </children>
           </HBox>
           <TableView fx:id="tableEmployee" prefHeight="592.0" prefWidth="950.0">

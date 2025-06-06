@@ -115,10 +115,6 @@ public class ReviewBranchListController extends Controller implements FileExport
     // Lógica para eliminar empleado
   }
 
-  public void handleExportBranches() {
-    // Lógica para exportar empleados
-  }
-
   public static void navigateToBranchListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Sucursales", "ReviewBranchListPage");
   }

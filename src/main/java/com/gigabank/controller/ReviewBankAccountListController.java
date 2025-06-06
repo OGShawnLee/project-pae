@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ReviewBankAccountListController extends Controller {
+public class ReviewBankAccountListController extends Controller implements FileExporter {
     @FXML
     private TableView<BankAccountDTO> tableBankAccount;
     @FXML
@@ -49,6 +49,46 @@ public class ReviewBankAccountListController extends Controller {
         );
     }
 
+    @Override
+    public void handleExportToCSV() {
+        var accounts = BankAccountDBProxy.getInstance().getAll();
+
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        fileChooser.setTitle("Exportar Lista de Cuentas Bancarias");
+        fileChooser.getExtensionFilters().add(
+                new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv")
+        );
+
+        java.io.File file = fileChooser.showSaveDialog(tableBankAccount.getScene().getWindow());
+
+        if (file != null) {
+            try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                    new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+                writer.write("ID,Cliente,Sucursal,Tipo,Saldo,Límite\n");
+                for (var acc : accounts) {
+                    writer.write(String.format("%s,%s,%s,%s,%.2f,%.2f\n",
+                            acc.getID(),
+                            acc.getClient() != null ? acc.getClient().getName() : "-",
+                            acc.getBranch() != null ? acc.getBranch().getName() : "-",
+                            acc.getType() != null ? acc.getType().name() : "-",
+                            acc.getBalance(),
+                            acc.getLimit()
+                    ));
+                }
+            } catch (java.io.IOException e) {
+                Modal.displayError("Error al exportar la lista de cuentas bancarias.");
+            }
+        }
+    }
+
+    public void handleExportToJSON() {
+        handleExportToJSON(
+                BankAccountDBProxy.getInstance().getAll(),
+                "Exportar Lista de Cuentas Bancarias",
+                tableBankAccount.getScene().getWindow()
+        );
+    }
+
     public void handleOpenRegisterBankAccount() {
         Modal.display("Registrar Cuenta", "RegisterBankAccountModal", this::loadBankAccountList);
     }
@@ -57,9 +97,6 @@ public class ReviewBankAccountListController extends Controller {
     }
 
     public void handleDeleteBankAccount() {
-    }
-
-    public void handleExportBankAccounts() {
     }
 
     public static void navigateToBankAccountListPage(Stage currentStage) {

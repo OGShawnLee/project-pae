@@ -128,10 +128,6 @@ public class ReviewManagerListController extends Controller implements FileExpor
     // Lógica para eliminar empleado
   }
 
-  public void handleExportManagers() {
-    // Lógica para exportar empleados
-  }
-
   public static void navigateToManagerListPage(Stage currentStage) {
     navigateTo(currentStage, "Lista de Gerentes", "ReviewManagerListPage");
   }
