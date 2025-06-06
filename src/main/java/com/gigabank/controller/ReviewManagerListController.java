@@ -2,15 +2,24 @@ package com.gigabank.controller;
 
 import com.gigabank.model.data.AccountDTO;
 import com.gigabank.model.data.EmployeeDTO;
+import com.gigabank.model.db.branch.BranchDBProxy;
 import com.gigabank.model.db.employee.EmployeeDBProxy;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class ReviewManagerListController extends Controller {
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
+public class ReviewManagerListController extends Controller implements FileExporter {
   @FXML
   private TableView<EmployeeDTO> tableEmployee;
   @FXML
@@ -62,6 +71,44 @@ public class ReviewManagerListController extends Controller {
         );
         return null;
       }
+    );
+  }
+
+  @Override
+  public void handleExportToCSV() {
+    ArrayList<EmployeeDTO> branches = EmployeeDBProxy.getInstance().getAll();
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Exportar Lista de Gerentes");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+    File file = fileChooser.showSaveDialog(container.getScene().getWindow());
+
+    if (file != null) {
+      try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+        writer.write("Nombre,Nombre de Usuario,Dirección,Género,Fecha de Nacimiento,Sueldo,Sucursal\n");
+        for (EmployeeDTO manager : branches) {
+          writer.write(String.format("%s,%s,%s,%s,%s,%s,%s\n",
+            manager.getName(),
+            manager.getDisplayName(),
+            manager.getAddress(),
+            manager.getGender(),
+            manager.getBornAt().toString(),
+            manager.getWage(),
+            manager.getBranch()
+          ));
+        }
+      } catch (IOException e) {
+        Modal.displayError("Error al exportar la lista de sucursales.");
+      }
+    }
+  }
+
+  public void handleExportToJSON() {
+    handleExportToJSON(
+      BranchDBProxy.getInstance().getAll(),
+      "Exportar Lista de Gerentes",
+      container.getScene().getWindow()
     );
   }
 

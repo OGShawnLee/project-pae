@@ -8,9 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class ReviewBranchListController extends Controller {
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
+public class ReviewBranchListController extends Controller implements FileExporter {
   @FXML
   private TableView<BranchDTO> tableBranch;
   @FXML
@@ -56,6 +61,41 @@ public class ReviewBranchListController extends Controller {
         );
         return null;
       }
+    );
+  }
+
+  @Override
+  public void handleExportToCSV() {
+    ArrayList<BranchDTO> branches = BranchDBProxy.getInstance().getAll();
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Exportar Lista de Sucursales");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+    File file = fileChooser.showSaveDialog(container.getScene().getWindow());
+
+    if (file != null) {
+      try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+        writer.write("Nombre,Email,Dirección,Teléfono\n");
+        for (BranchDTO branch : branches) {
+          writer.write(String.format("%s,%s,%s,%s\n",
+            branch.getName(),
+            branch.getEmail(),
+            branch.getAddress(),
+            branch.getPhone()
+          ));
+        }
+      } catch (IOException e) {
+        Modal.displayError("Error al exportar la lista de sucursales.");
+      }
+    }
+  }
+
+  public void handleExportToJSON() {
+   handleExportToJSON(
+      BranchDBProxy.getInstance().getAll(),
+      "Exportar Lista de Sucursales",
+      container.getScene().getWindow()
     );
   }
 

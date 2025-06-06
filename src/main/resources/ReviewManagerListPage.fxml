@@ -28,6 +28,8 @@
               <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
               <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterManager" text="Registrar Gerente"
                       HBox.hgrow="ALWAYS"/>
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToCSV" text="Exportar Lista a CSV" />
+              <Button mnemonicParsing="false" onMouseClicked="#handleExportToJSON" text="Exportar Lista a JSON" />
             </children>
           </HBox>
           <HBox alignment="CENTER_LEFT" spacing="16.0">
