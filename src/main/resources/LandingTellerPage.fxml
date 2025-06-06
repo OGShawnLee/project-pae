@@ -13,24 +13,22 @@
   <children>
     <!-- User Info and Logout -->
     <VBox layoutY="604.0" prefWidth="320.0" spacing="16.0">
-      <children>
-        <Label fx:id="labelDisplayName" styleClass="title" text="\@Nombre de Usuario">
-          <VBox.margin>
-            <Insets/>
-          </VBox.margin>
-          <padding>
-            <Insets bottom="8.0"/>
-          </padding>
-        </Label>
-        <HBox maxWidth="1.7976931348623157E308" spacing="16.0">
-          <children>
-            <Button mnemonicParsing="false" onAction="#handleLogOut" prefWidth="140.0" styleClass="button"
-                    text="Cerrar Sesión"/>
-            <Button mnemonicParsing="false" onAction="#handleOpenManageProfile" prefWidth="140.0"
-                    text="Gestionar Perfil"/>
-          </children>
-        </HBox>
-      </children>
+      <Label fx:id="labelDisplayName" styleClass="title" text="\@Nombre de Usuario">
+        <VBox.margin>
+          <Insets/>
+        </VBox.margin>
+        <padding>
+          <Insets bottom="8.0"/>
+        </padding>
+      </Label>
+      <HBox maxWidth="1.7976931348623157E308" spacing="16.0">
+        <children>
+          <Button mnemonicParsing="false" onAction="#handleLogOut" prefWidth="140.0" styleClass="button"
+                  text="Cerrar Sesión"/>
+          <Button mnemonicParsing="false" onAction="#handleOpenManageProfile" prefWidth="140.0"
+                  text="Gestionar Perfil"/>
+        </children>
+      </HBox>
       <padding>
         <Insets bottom="32.0" left="32.0"/>
       </padding>
@@ -39,21 +37,15 @@
     <VBox layoutX="480.0" layoutY="200.0" prefWidth="320.0" spacing="16.0">
       <children>
         <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
-          <children>
-            <Button onAction="#navigateToReviewTransactionListPage" maxWidth="1.7976931348623157E308"
-                    mnemonicParsing="false"
-                    prefWidth="160.0" styleClass="button" text="Transacciones"/>
-            <Button onAction="#handleOpenRegisterTransaction" mnemonicParsing="false" prefWidth="160.0"
-                    styleClass="button"
-                    text="Registrar Transacción"/>
-          </children>
+          <Button onAction="#navigateToReviewTransactionListPage" maxWidth="1.7976931348623157E308"
+                  mnemonicParsing="false"
+                  prefWidth="160.0" styleClass="button" text="Transacciones"/>
+          <Button onAction="#handleOpenRegisterTransaction" mnemonicParsing="false" prefWidth="160.0"
+                  styleClass="button"
+                  text="Registrar Transacción"/>
         </HBox>
-        <HBox maxWidth="-Infinity" prefHeight="32.0" spacing="16.0">
-          <children>
-            <Button onAction="#handleOpenGenerateBankStatement" maxWidth="1.7976931348623157E308"
-                    mnemonicParsing="false" styleClass="button" text="Generar Historial de Cuenta"/>
-          </children>
-        </HBox>
+        <Button onAction="#handleOpenGenerateBankStatement" maxWidth="1.7976931348623157E308"
+                mnemonicParsing="false" styleClass="button" text="Generar Historial de Cuenta"/>
       </children>
     </VBox>
   </children>
