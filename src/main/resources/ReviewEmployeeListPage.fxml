@@ -18,28 +18,26 @@
                 <children>
                     <Label text="Lista de Empleados">
                         <font>
-                            <Font size="24.0"/>
+                            <Font size="24.0" />
                         </font>
                     </Label>
                     <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="32.0" VBox.vgrow="ALWAYS">
                         <children>
-                            <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio"/>
-                            <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterEmployee" text="Registrar Empleado"
-                                    HBox.hgrow="ALWAYS"/>
+                            <Button mnemonicParsing="false" onMouseClicked="#navigateToLandingPage" text="Volver a Inicio" />
+                            <Button mnemonicParsing="false" onMouseClicked="#handleOpenRegisterEmployee" text="Registrar Empleado" HBox.hgrow="ALWAYS" />
                         </children>
                     </HBox>
                     <TableView fx:id="tableEmployee" prefHeight="592.0" prefWidth="950.0">
                         <columns>
-                            <TableColumn fx:id="columnDisplayName" prefWidth="190.0" text="Usuario"/>
-                            <TableColumn fx:id="columnName" prefWidth="190.0" text="Nombre"/>
-                            <TableColumn fx:id="columnGender" prefWidth="190.0" text="Género"/>
-                            <TableColumn fx:id="columnWage" prefWidth="190.0" text="Salario"/>
-                            <TableColumn fx:id="columnEmail" prefWidth="190.0" text="Correo Electrónico"/>
+                            <TableColumn fx:id="columnDisplayName" prefWidth="237.5" text="Usuario" />
+                            <TableColumn fx:id="columnName" prefWidth="237.5" text="Nombre" />
+                            <TableColumn fx:id="columnGender" prefWidth="237.5" text="Género" />
+                            <TableColumn fx:id="columnWage" prefWidth="237.5" text="Salario" />
                         </columns>
                     </TableView>
                 </children>
                 <padding>
-                    <Insets bottom="32.0" top="32.0"/>
+                    <Insets bottom="32.0" top="32.0" />
                 </padding>
             </VBox>
         </AnchorPane>

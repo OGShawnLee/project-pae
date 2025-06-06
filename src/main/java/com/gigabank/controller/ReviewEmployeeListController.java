@@ -20,8 +20,6 @@ public class ReviewEmployeeListController extends Controller {
     private TableColumn<EmployeeDTO, String> columnGender;
     @FXML
     private TableColumn<EmployeeDTO, Float> columnWage;
-    @FXML
-    private TableColumn<EmployeeDTO, String> columnEmail;
 
     @FXML
     private void initialize() {
@@ -34,15 +32,10 @@ public class ReviewEmployeeListController extends Controller {
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         columnWage.setCellValueFactory(new PropertyValueFactory<>("wage"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
     }
 
     private void loadEmployeeList() {
-        tableEmployee.setItems(
-                FXCollections.observableList(
-                        EmployeeDBProxy.getInstance().getAll()
-                )
-        );
+        tableEmployee.setItems(FXCollections.observableList(EmployeeDBProxy.getInstance().getAll()));
     }
 
     public void handleOpenRegisterEmployee() {
